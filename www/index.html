@@ -1,0 +1,120 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon"
+      type="image/png"
+      href="images/website-logo.png"/>
+    <link href="styles/style.css" rel="stylesheet"/>
+    <script type="text/javascript" src="scripts/data.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <title>Modern Commerce Landscape</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="website-logo" id="website-logo">
+          <img src="images/website-logo.png" alt="website logo"/>
+          <h1 id="website-title">Modern Commerce Landscape</h1>
+        </div>
+        <div class="navlink" id="category-view-link">
+          <h2>Know what you need already? <span class="text-link" id="category-select-btn">Select from Category List Instead</span></h2>
+          <div class="forward-arrow">
+          </div>
+        </div>
+        <div class="navlink hidden" id="prompt-view-link">
+          <h2><span class="text-link" id="prompt-select-btn">Revert View</span></h2>
+          <div class="forward-arrow">
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="two-column" id="category-select">
+        <section class="section-left">
+          <h1 class="prompt">What do you wish to explore today?</h1>
+          <h2>I want to...</h2>
+          <section id="option-box">
+            <div class="option">
+              <h3>Include interactive features to improve the store browsing experience</h3>
+            </div>
+            <div class="option-selected">
+              <h3>Create an e-commerce website for my products</h3>
+              <div class="category-list">
+                <div class="category">
+                  <h4>Frontend Suite</h4>
+                  <p>Build your e-commerce website with easy setup and comes with all the basic functionality you need.</p>
+                  <img class="inblock-icon-2" src="images/icons/plus-blue.png"/>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="section-right">
+          <h1 class="prompt">Your Category Selections:</h1>
+          <h2 id="section-right-description">Your selection is currently empty.</h2>
+          <section id="selected-options">
+          </section>
+          <button id="explore-btn">Explore!</button>
+        </section>
+      </section>
+      <div class="one-column hidden">
+        <div class="back-arrow">
+        </div>
+        <h2 id="click-to-back" class="text-link">Back</h2>
+      </div>
+      <section class="two-column hidden" id="category-explore">
+        <section class="section-left">
+          <h1 class="prompt">Explore the categories you selected!</h1>
+          <h2>Click each block to view its category landscape:</h2>
+          <div class="lego-box">
+            <img src="images/icons/category.png"/>
+            <div id="legos">
+            </div>
+          </div>
+          <section id="explore-box">
+            <section id="companies-column">
+              <h1>Companies:</h1>
+              <div id="companies-box">
+              </div>
+            </section>
+            <section id="filters-and-details">
+              <div id="filters">
+                <h1>Filters:</h1>
+              </div>
+              <div id="company-details">
+              </div>
+            </section>
+          </section>
+        </section>
+        <section class="section-right">
+          <h1 class="prompt">Your Company Selections:</h1>
+          <h2 id="section-right-description-2">Your selection is currently empty.</h2>
+          <section id="selected-companies">
+            <div class="company-container background-blue-1">
+              <h4>Frontend</h4>
+              <div class="companies-box-2">
+              </div>
+            </div>
+            <div class="company-container background-blue-2">
+              <h4>Backend</h4>
+              <div class="companies-box-2">
+              </div>
+            </div>
+            <div class="company-container background-blue-3">
+              <h4>Developer Tooling</h4>
+              <div class="companies-box-2">
+              </div>
+            </div>
+          </section>
+          <section id="generate-pdf">
+            <p>If you would like to download a PDF summarizing your selections, please click on "Send e-mail" and the "Generate a PDF" link will activate. This will allow us to reach out to you if we could provide further assistance in your selection process.</p>
+            <div class="side-by-side">
+              <a id="email-button" class="email-deselected">Send e-mail</a>
+              <a id="pdf-button" class="btn-deselected">Generate PDF</a>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+html {
+  font-family: "Roboto", sans-serif;
+  font-size: 14pt;
+}
+
+body {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@page {
+  size: landscape;
+}
+
+header {
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.break {
+  page-break-after: always;
+}
+
+.two-column {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  border-style: solid;
+  border-color: #C4C4C4;
+  border-width: thin;
+  border-radius: .5rem;
+  padding: 1rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.info h2 {
+  margin: 0;
+}
+
+.info p {
+  max-height: 70px;
+  font-size: .8rem;
+  overflow: hidden;
+}
+
+.logo {
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  width: 80%;
+}
+
+.icons-row {
+  display: flex;
+  margin-top: auto;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.icon {
+  display: flex;
+  height: 1.5rem;
+  width: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-right: .5rem;
+}
+
+.icon-container h3 {
+  font-weight: normal;
+}
+
+.icon img {
+  height: 100%;
+}
+
+.text-link {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #3E8A76;
+  margin: 0 3rem 0 0;
+}
+
+.text-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#pdf-links {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+@media print {
+  .hidden-print {
+    display: none !important;
+  }
+
+  body {
+    width: 100%;
+  }
+
+  .two-column {
+    border-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+    box-shadow: none;
+  }
+}
