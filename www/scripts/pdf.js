@@ -2,14 +2,13 @@
   "use strict";
   window.addEventListener("load", init);
 
-  // promptDict, descriptionDict, categoryTree, categoryCompanies, companyInfo defined in data.js
+  // data structure references defined in data.js
 
   function init() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     let companies = params["companies"].split(",");
     summarizeSelections(companies);
-    console.log(companies);
     id("pdf").addEventListener("click", generatePDF);
     id("copyURL").addEventListener("click", copyURL);
   }
@@ -37,8 +36,8 @@
       let iconRow = document.createElement("div");
       iconRow.classList.add("icons-row");
       let categoryName = "";
-      for(let category in companyCategories) {
-        if(companyCategories[category].includes(companies[i])) {
+      for(let category in categoryCompanies) {
+        if(categoryCompanies[category].includes(companies[i])) {
           categoryName = category;
         }
       }
@@ -48,7 +47,7 @@
       infoContainer.appendChild(iconRow);
       companyContainer.appendChild(infoContainer);
       container.appendChild(companyContainer);
-      if((i+1)%3 == 0) {
+      if((i+1)%4 == 0) {
         let breakDiv = document.createElement("div");
         breakDiv.classList.add("break");
         container.appendChild(breakDiv);

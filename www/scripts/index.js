@@ -2,17 +2,15 @@
   "use strict";
   window.addEventListener("load", init);
 
-  // promptDict, descriptionDict, categoryTree, categoryCompanies, companyInfo defined in data.js
+  // data structure references defined in data.js
 
   function init() {
-    console.log(companyCategories);
     initOptionBox();
     id("category-select-btn").addEventListener("click", showCategoryView);
     id("explore-btn").addEventListener("click", showExploreView);
     id("click-to-back").addEventListener("click", revertView);
     id("prompt-select-btn").addEventListener("click", revertCategoryView);
     id("website-logo").addEventListener("click", resetView);
-    id("email-button").addEventListener("click", email);
     id("pdf-button").addEventListener("click", makePdf);
   }
 
@@ -32,19 +30,12 @@
     }
     console.log(id("option-box").getElementsByClassName("category-grid-container"));
     if(id("option-box").getElementsByClassName("category-grid-container").length == 0) {
-      console.log("enter");
       id("category-view-link").classList.remove("hidden");
     } else {
       id("prompt-view-link").classList.remove("hidden");
     }
-  }
-
-  function changeView() {
-    id("category-select").classList.add("hidden");
-    id("category-explore").classList.remove("hidden");
-    id("click-to-back").parentNode.classList.remove("hidden");
-    id("category-view-link").classList.add("hidden");
-    id("prompt-view-link").classList.add("hidden");
+    id("company-details").classList.add("hidden");
+    id("website-description").classList.remove("hidden");
   }
 
   function initOptionBox() {
@@ -62,17 +53,6 @@
     let i = 0;
     for(let prompt in promptDict) {
       let thisColumn = optionBox.getElementsByClassName("option-column")[i%2];
-      let newLabelContainer = document.createElement("div");
-      newLabelContainer.classList.add("category-container");
-      let categoryLabel = document.createElement("div");
-      categoryLabel.classList.add("category-label");
-      let icon = document.createElement("img");
-      icon.src = "images/icons/category.png";
-      categoryLabel.appendChild(icon);
-      let heading = document.createElement("h5");
-      heading.innerText = findRootCategory(promptDict[prompt][0]); // finds frontend/backend/developer tooling based on first child
-      categoryLabel.appendChild(heading);
-      newLabelContainer.appendChild(categoryLabel);
       let newPrompt = document.createElement("div");
       newPrompt.classList.add("option");
       let promptTxt = document.createElement("h3");
@@ -82,8 +62,8 @@
       downArrow.src = "images/icons/down-arrow.png";
       newPrompt.appendChild(downArrow);
       newPrompt.addEventListener("click", expandOption.bind(newPrompt));
-      newLabelContainer.appendChild(newPrompt);
-      thisColumn.appendChild(newLabelContainer);
+      // newLabelContainer.appendChild(newPrompt);
+      thisColumn.appendChild(newPrompt);
       i++;
     }
   }
@@ -101,7 +81,7 @@
     return answer;
   }
 
-  // filling options from categoryCompanies, rather than categoryTree
+  // filling options from categoryCompanies
   function initOptionBoxNoPrompt() {
     let optionBox = id("option-box");
     while(optionBox.firstChild) {
@@ -137,8 +117,8 @@
         let categoryHeading = document.createElement("h4");
         categoryHeading.innerText = category;
         let description = document.createElement("p");
-        if(descriptionDict[category]) {
-          description.innerText = descriptionDict[category];
+        if(categoryDescription[category]) {
+          description.innerText = categoryDescription[category];
         } else {
           description.innerText = "Description placeholder";
         }
@@ -158,7 +138,6 @@
       }
       topContainer.appendChild(categoryContainer);
       newLabelContainer.appendChild(topContainer);
-      console.log(newLabelContainer);
       setBackgroundColor(newLabelContainer.getElementsByClassName("category-grid-container")[0]);
       optionBox.appendChild(newLabelContainer);
     }
@@ -192,16 +171,18 @@
     if(this.classList.contains("option")) {
       this.classList.remove("option");
       this.classList.add("option-selected");
-      setBackgroundColor(this);
+      // setBackgroundColor(this);
       let categories = promptDict[this.innerText.trim()];
       let newHTML = "<h3>" + this.innerText.trim() + "</h3>" + "<div class=\"category-list\">";
       for(let i = 0; i < categories.length; i++) {
-        let description = "description placeholder";
-        if(categories[i] in descriptionDict) {
-          description = descriptionDict[categories[i]];
+        if(categories[i] in categoryCompanies) {
+          let description = "description placeholder";
+          if(categories[i] in categoryDescription) {
+            description = categoryDescription[categories[i]];
+          }
+          // console.log(description);
+          newHTML += "<div class=\"category\"><h4>" + categories[i] + "</h4><p>" + description + "</p><img class=\"inblock-icon-2\" src=\"images/icons/plus-blue.png\"/></div>";
         }
-        // console.log(description);
-        newHTML += "<div class=\"category\"><h4>" + categories[i] + "</h4><p>" + description + "</p><img class=\"inblock-icon-2\" src=\"images/icons/plus-blue.png\"/></div>";
       }
       newHTML += "</div>";
       this.innerHTML = newHTML;
@@ -216,6 +197,7 @@
   }
 
   function addToSelection() {
+    id("explore-btn").classList.remove("btn-deselected");
     id("section-right-description").innerText = "Your Selections:";
     let selectionBox = id("selected-options");
     // check if this already in selections
@@ -237,7 +219,6 @@
       image.src = "images/icons/minus-white.png";
       newElement.appendChild(heading);
       newElement.appendChild(image);
-      console.log(newElement);
       // set background color
       newElement.classList.add(getBackgroundColor(this.firstChild.innerText));
       newElement.addEventListener("click", removeSelection.bind(newElement));
@@ -247,23 +228,28 @@
 
   function removeSelection() {
     this.remove();
+    if(id("selected-options").getElementsByClassName("selection").length == 0) {
+      id("explore-btn").classList.add("btn-deselected");
+    }
   }
 
   function removeCompany() {
     this.remove();
-    if(id("selected-options-2").getElementsByClassName("company-blue").length == 0) {
-      id("email-button").classList.add("email-deselected");
-      id("email-button").removeAttribute("href");
+    if(id("selected-companies").getElementsByClassName("company-blue").length == 0) {
       id("pdf-button").classList.add("btn-deselected");
-    } else {
-      updateHref();
+      id("section-right-description-2").classList.remove("hidden");
     }
   }
 
   function showExploreView() {
     let selections = id("selected-options").getElementsByClassName("selection");
     if(selections.length > 0) {
-      changeView();
+      id("category-select").classList.add("hidden");
+      id("category-explore").classList.remove("hidden");
+      id("click-to-back").parentNode.classList.remove("hidden");
+      id("category-view-link").classList.add("hidden");
+      id("prompt-view-link").classList.add("hidden");
+      id("website-description").classList.add("hidden");
       let selectionsArray = [];
       for(let i = 0; i < selections.length; i++) {
         selectionsArray.push(selections[i].innerText);
@@ -333,6 +319,7 @@
     let companyName = this.getElementsByClassName("hidden")[0].innerText;
     if(companyName in companyInfo) {
       let detailBox = id("company-details");
+      detailBox.classList.remove("hidden");
       while(detailBox.firstChild) {
         detailBox.removeChild(detailBox.firstChild);
       }
@@ -352,32 +339,79 @@
 
   // this = company name (string)
   function addToCompanyList() {
-    id("section-right-description-2").innerText = "Your Companies of Interest:";
-    let section = id("selected-companies"); // 3 sections for frontend, backend, developer tooling
-    let thisRoot = findRoot(this); //"Frontend", "Backend", or "Developer Tooling"
-    let categories = section.getElementsByClassName("company-container");
-    let isAdded = false;
-    let i = 0;
-    while(!isAdded) {
-      if(thisRoot == categories[i].querySelector("h4").innerText.trim()) {
-        if(alreadyAdded(this, categories[i])) {
-          isAdded = true;
-        } else {
-          let newElement = document.createElement("div");
-          newElement.classList.add("company-blue");
-          newElement.innerHTML = "<h3 class=\"hidden\">" + this + "</h3><div><img class=\"logo\" src=\"" + companyInfo[this]["image"] + "\" alt=\"" + this + "\"/></div><img class=\"inblock-icon-2\" src=\"images/icons/minus-blue.png\"/>";
-          newElement.addEventListener("click", removeCompany.bind(newElement));
-          categories[i].querySelector(".companies-box-2").appendChild(newElement);
-          isAdded = true;
+    id("section-right-description-2").classList.add("hidden");
+    let section = id("selected-companies");
+    let categoryName = id("legos").querySelector(".lego-selected").innerText;
+    if(!vendorAdded(this, categoryName)) {
+      // first check if category section exists already
+      let selectedCategories = section.getElementsByClassName("company-container");
+      let categoryExists = false;
+      for(let i = 0; i < selectedCategories.length; i++) {
+        if(selectedCategories[i].querySelector("h4").innerText == categoryName) {
+          categoryExists = true;
+          let newCompany = makeCompanyIcon(this);
+          selectedCategories[i].querySelector("div").appendChild(newCompany);
         }
-      } else if(i >= 3) {
-        console.log("error: can't find correct category");
-        isAdded = true;
       }
-      i++;
+      if(!categoryExists) {
+        let backgroundColor = "background-default";
+        let root = findRoot(this);
+        if(root in categoryColors) {
+          backgroundColor = categoryColors[root];
+        }
+        let newContainer = document.createElement("div");
+        newContainer.classList.add("company-container");
+        newContainer.classList.add(backgroundColor);
+        let categoryContainer = document.createElement("h4");
+        categoryContainer.innerText = categoryName;
+        newContainer.appendChild(categoryContainer);
+        let companyBox = document.createElement("div");
+        companyBox.appendChild(makeCompanyIcon(this));
+        newContainer.appendChild(companyBox);
+        section.appendChild(newContainer);
+      }
     }
-    id("email-button").classList.remove("email-deselected");
-    updateHref();
+    id("pdf-button").classList.remove("btn-deselected");
+  }
+
+  function makeCompanyIcon(name) {
+    let newCompany = document.createElement("div");
+    newCompany.classList.add("company-blue");
+    let companyName = document.createElement("h3");
+    companyName.classList.add("hidden");
+    companyName.innerText = name;
+    newCompany.appendChild(companyName);
+    let imgContainer = document.createElement("div");
+    let img = document.createElement("img");
+    img.classList.add("logo");
+    img.src = companyInfo[name]["image"];
+    imgContainer.appendChild(img);
+    newCompany.appendChild(imgContainer);
+    let icon = document.createElement("img");
+    icon.classList.add("inblock-icon-2");
+    icon.src = "images/icons/minus-blue.png";
+    newCompany.appendChild(icon);
+    newCompany.addEventListener("click", removeCompany.bind(newCompany));
+    return newCompany;
+  }
+
+  // checks if vendor is added already to vendor shortlist
+  function vendorAdded(company, category) {
+    let isAdded = false;
+    let selections = id("selected-companies").getElementsByClassName("company-container");
+    for(let i = 0; i < selections.length; i++) {
+      console.log(selections[i]);
+      if(selections[i].querySelector("h4").innerText.trim() == category.trim()) {
+        let addedCompanies = selections[i].querySelector("div").getElementsByClassName("company-blue");
+        for(let j = 0; j < addedCompanies.length; j++) {
+          let thisCompany = addedCompanies[j].querySelector("h3").innerText;
+          if(company == thisCompany) {
+            isAdded = true;
+          }
+        }
+      }
+    }
+    return isAdded;
   }
 
   function alreadyAdded(companyName, companyContainer) {
@@ -402,6 +436,7 @@
   }
 
   function updateContent() {
+    id("company-details").classList.add("hidden");
     let currentLego = document.getElementsByClassName("lego-selected")[0];
     currentLego.classList.remove("lego-selected");
     currentLego.classList.add("lego-unselected");
@@ -511,9 +546,7 @@
   }
 
   function filterCompanies(filters) {
-    console.log(filters);
     let companies = id("companies-box").querySelectorAll(".company, .company-selected");
-    console.log(companies);
     // first reset - remove class "hidden"
     for(let i = 0; i < companies.length; i++) {
       companies[i].classList.remove("hidden");
@@ -544,36 +577,19 @@
   }
 
   function showCategoryView() {
-    console.log("showCategoryView");
     id("prompt-view-link").classList.remove("hidden");
     id("category-view-link").classList.add("hidden");
     initOptionBoxNoPrompt();
+    id("main-prompt").classList.add("hidden");
+    id("main-prompt-sub").classList.add("hidden");
   }
 
   function revertCategoryView() {
     id("prompt-view-link").classList.add("hidden");
     id("category-view-link").classList.remove("hidden");
+    id("main-prompt").classList.remove("hidden");
+    id("main-prompt-sub").classList.remove("hidden");
     initOptionBox();
-  }
-
-  function updateHref() {
-    let emailHref = "mailto:koyo.nakamura@commercetools.com?subject=Website%20User&body=";
-    let msg = "Hello! Here's the website information I entered: ";
-    let selectedCompanies = document.getElementsByClassName("company-blue");
-    for(let i = 0; i < selectedCompanies.length - 1; i++) {
-      let companyName = selectedCompanies[i].getElementsByClassName("hidden")[0];
-      msg += companyName.innerText + ", ";
-    }
-    let companyName = selectedCompanies[selectedCompanies.length - 1].getElementsByClassName("hidden")[0];
-    msg += companyName.innerText + ".";
-    emailHref += encodeURIComponent(msg);
-    id("email-button").href = emailHref;
-  }
-
-  function email() {
-    if(!id("email-button").classList.contains("email-deselected")) {
-      id("pdf-button").classList.remove("btn-deselected");
-    }
   }
 
   function makePdf() {
@@ -586,8 +602,6 @@
       }
       encodedCompanies += companies[companies.length - 1].getElementsByClassName("hidden")[0].innerText;
       redirectUrl += encodeURIComponent(encodedCompanies);
-      console.log(redirectUrl);
-      console.log(decodeURIComponent(redirectUrl));
       window.open(redirectUrl, "_blank");
     }
   }

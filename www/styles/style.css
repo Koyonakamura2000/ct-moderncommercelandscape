@@ -10,6 +10,9 @@ body {
   margin-right: 5%;
 }
 
+header {
+  margin-bottom: 1rem;
+}
 /* nav styles */
 
 #website-logo {
@@ -46,16 +49,29 @@ nav {
 h2 {
   font-size: 1rem;
   font-weight: lighter;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+nav h2, .one-column h2 {
+  margin-bottom: 0;
 }
 
 .text-link {
   font-weight: bold;
   color: #3E788A;
+  text-decoration: none;
 }
 
 .text-link:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+#website-description {
+  margin: 0;
+  font-size: .7rem;
+  width: 45%;
 }
 /* end nav styles */
 
@@ -73,11 +89,11 @@ main {
   display: flex;
   flex-direction: column;
   width: 70%;
-  padding: .5rem 1rem .5rem .5rem;
-  border-style: solid;
+  padding: .5rem .5rem 0 0;
+  /* border-style: solid;
   border-width: thin;
   border-right: none;
-  border-color: #C4C4C4;
+  border-color: #C4C4C4; */
 }
 
 .section-right {
@@ -88,13 +104,14 @@ main {
   border-style: solid;
   border-width: thin;
   border-color: #C4C4C4;
+  border-radius: 1rem;
   box-shadow: 0px 0px 4px 2px #00000040;
   position: relative;
 }
 
 .prompt {
   font-size: 1.2rem;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
   margin-top: .3rem;
 }
 
@@ -119,6 +136,7 @@ main {
   border-radius: .6rem;
   border-color: #3E788A;
   margin-right: .3rem;
+  margin-bottom: .3rem;
   justify-content: space-between;
   transition: box-shadow 200ms;
 }
@@ -151,6 +169,7 @@ main {
   padding: .5rem;
   border-radius: .6rem;
   margin-right: .3rem;
+  margin-bottom: .3rem;
   justify-content: space-between;
 }
 
@@ -194,28 +213,30 @@ main {
   margin: 0 0 .6rem 0;
 }
 
-.category {
-  width: 45%;
+.category, .category-gridded {
   display: flex;
   flex-direction: column;
   background-color: white;
   color: black;
   border-radius: .6rem;
   padding: .4rem;
-  margin-top: .3rem;
   position: relative;
+}
+
+.category:hover, .category-gridded:hover {
+  cursor: pointer;
+  background-color: #E6E7E8;
+}
+
+
+.category {
+  width: 45%;
+  margin-top: .3rem;
 }
 
 .category-gridded {
   width: 22%;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  color: black;
-  border-radius: .6rem;
-  padding: .4rem;
   margin-top: .5rem;
-  position: relative;
 }
 
 .category h4, .category-gridded h4 {
@@ -242,14 +263,14 @@ main {
 }
 /* end styles for expanded prompt */
 
-#selected-options{
+#selected-options {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .selection {
   display: flex;
-  margin-right: 1rem;
+  width: fit-content;
   border-radius: .6rem;
   align-items: center;
   padding-left: .3rem;
@@ -289,46 +310,26 @@ main {
   color: #0CC8F1;
 }
 
-#pdf-button {
-  background-color: #0CC8F1;
-  text-decoration: none;
-  border: none;
-  padding: .5rem;
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
-  border-radius: .6rem;
-  box-shadow: 0px 4px 4px 0px #00000040;
-}
-
-#explore-btn {
+#explore-btn, #pdf-button {
   display: flex;
   align-self: flex-end;
   bottom: 1rem;
   position: absolute;
-  background-color: #0CC8F1;
   text-decoration: none;
   border: none;
-  padding: .5rem;
-  color: white;
+  color: #0CC8F1;
   font-weight: bold;
   font-size: 1rem;
-  border-radius: .6rem;
-  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: white;
 }
 
-.email-deselected {
-  background-color: white !important;
-  color: #C4C4C4 !important;
+#explore-btn:hover, #pdf-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .btn-deselected {
-  background-color: white !important;
   color: #C4C4C4 !important;
-  border-style: solid !important;
-  border-width: medium !important;
-  border-color: #C4C4C4 !important;
-  box-shadow: none !important;
 }
 
 #legos {
@@ -451,20 +452,24 @@ main {
 }
 
 #filters-and-details {
-  background-color: white;
+  /* background-color: white; */
   border-style: solid;
   border-color: #3E788A;
+  border-width: .2rem;
   width: 40%;
-  padding: .5rem;
+  /* padding: .5rem; */
   display: flex;
   flex-direction: column;
 }
 
 #filters {
-  height: 45%;
-  margin-bottom: 1rem;
+  background-color: white;
+  padding: .5rem;
+  height: 70%;
+  margin-bottom: .3rem;
   display: flex;
   flex-direction: column;
+  border-radius: 0 0 0 1rem;
 }
 
 .filters-row {
@@ -517,8 +522,15 @@ main {
 }
 
 #company-details {
-  height: 45%;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  padding: .5rem;
+  background-color: white;
+  border-style: solid;
+  border-color: #8BDE22;
+  position: relative;
+  border-radius: .5rem;
 }
 
 #filters h1 {
@@ -528,11 +540,12 @@ main {
 
 #company-details h1 {
   margin: 0 0 1rem 0;
-  color: #3E788A;
+  color: black;
 }
 
 #company-details p {
   font-size: .7rem;
+  margin: 0;
 }
 
 #company-add-btn {
@@ -545,6 +558,9 @@ main {
   font-size: .7rem;
   border-radius: .3rem;
   box-shadow: 0px 4px 4px 0px #00000040;
+  align-self: flex-end;
+  position: absolute;
+  bottom: 1rem;
 }
 
 .one-column {
@@ -584,6 +600,12 @@ main {
   flex-direction: column;
   padding: .5rem 1rem 1rem .5rem;
   border-radius: 1rem 0 0 1rem;
+  margin-bottom: .1rem;
+}
+
+.company-container div {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .company-container h4 {
@@ -593,6 +615,9 @@ main {
   color: white;
 }
 
+.background-default {
+  background-color: #3E788A;
+}
 /* 1 = frontend, 2 = backend, 3 = developer tooling */
 .background-blue-1 {
   background-color: #4E97AD;
@@ -604,10 +629,6 @@ main {
 
 .background-blue-3 {
   background-color: #4EAD93;
-}
-
-.hidden {
-  display: none;
 }
 
 .flex-vertical {
@@ -655,4 +676,17 @@ main {
   height: 1rem;
   width: auto;
   margin-right: .5rem;
+}
+
+#selected-companies {
+  margin-bottom: 3rem;
+}
+
+.btn-deselected:hover {
+  text-decoration: none !important;
+  cursor: default !important;
+}
+
+.hidden {
+  display: none !important;
 }

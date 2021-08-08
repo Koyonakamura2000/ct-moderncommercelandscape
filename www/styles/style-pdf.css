@@ -9,9 +9,9 @@ body {
   margin-right: auto;
 }
 
-@page {
+/* @page {
   size: landscape;
-}
+} */
 
 header {
   margin: auto;

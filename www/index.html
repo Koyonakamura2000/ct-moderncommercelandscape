@@ -7,6 +7,19 @@
     <link href="styles/style.css" rel="stylesheet"/>
     <script type="text/javascript" src="scripts/data.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
+
+    <!-- [if lte IE 8]>
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+    [endif] -->
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+    <script>
+      hbspt.forms.create({
+    	region: "na1",
+    	portalId: "4784080",
+    	formId: "63469947-8d9a-4313-b370-eaf2b7c7ac51"
+      });
+    </script>
+
     <title>Modern Commerce Landscape</title>
   </head>
   <body>
@@ -17,7 +30,7 @@
           <h1 id="website-title">Modern Commerce Landscape</h1>
         </div>
         <div class="navlink" id="category-view-link">
-          <h2>Know what you need already? <span class="text-link" id="category-select-btn">Select from Category List Instead</span></h2>
+          <h2>View full list of options: <span class="text-link" id="category-select-btn">View as Catalogue</span></h2>
           <div class="forward-arrow">
           </div>
         </div>
@@ -27,26 +40,15 @@
           </div>
         </div>
       </nav>
+      <p id="website-description">
+        <a class="text-link" href="https://www.gartner.com/en/documents/3986490/composable-commerce-must-be-adopted-for-the-future-of-ap" target="_blank">Composable Commerce</a> is great but it requires selecting multiple vendors. This website summarizes the e-commerce landscape, allowing you to explore vendors you might be interested in working with.
     </header>
     <main>
       <section class="two-column" id="category-select">
         <section class="section-left">
-          <h1 class="prompt">What do you wish to explore today?</h1>
-          <h2>I want to...</h2>
+          <h1 id="main-prompt" class="prompt">What do you want your software stack to do?</h1>
+          <h2 id="main-prompt-sub">I want to...</h2>
           <section id="option-box">
-            <div class="option">
-              <h3>Include interactive features to improve the store browsing experience</h3>
-            </div>
-            <div class="option-selected">
-              <h3>Create an e-commerce website for my products</h3>
-              <div class="category-list">
-                <div class="category">
-                  <h4>Frontend Suite</h4>
-                  <p>Build your e-commerce website with easy setup and comes with all the basic functionality you need.</p>
-                  <img class="inblock-icon-2" src="images/icons/plus-blue.png"/>
-                </div>
-              </div>
-            </div>
           </section>
         </section>
         <section class="section-right">
@@ -54,7 +56,7 @@
           <h2 id="section-right-description">Your selection is currently empty.</h2>
           <section id="selected-options">
           </section>
-          <button id="explore-btn">Explore!</button>
+          <button class="btn-deselected" id="explore-btn">Select Vendors</button>
         </section>
       </section>
       <div class="one-column hidden">
@@ -64,8 +66,8 @@
       </div>
       <section class="two-column hidden" id="category-explore">
         <section class="section-left">
-          <h1 class="prompt">Explore the categories you selected!</h1>
-          <h2>Click each block to view its category landscape:</h2>
+          <h1 class="prompt">Next, select your vendor shortlist.</h1>
+          <!-- <h2>Click each block to view its category landscape:</h2> -->
           <div class="lego-box">
             <img src="images/icons/category.png"/>
             <div id="legos">
@@ -81,38 +83,17 @@
               <div id="filters">
                 <h1>Filters:</h1>
               </div>
-              <div id="company-details">
+              <div class="hidden" id="company-details">
               </div>
             </section>
           </section>
         </section>
         <section class="section-right">
-          <h1 class="prompt">Your Company Selections:</h1>
+          <h1 class="prompt">Vendor Shortlist:</h1>
           <h2 id="section-right-description-2">Your selection is currently empty.</h2>
           <section id="selected-companies">
-            <div class="company-container background-blue-1">
-              <h4>Frontend</h4>
-              <div class="companies-box-2">
-              </div>
-            </div>
-            <div class="company-container background-blue-2">
-              <h4>Backend</h4>
-              <div class="companies-box-2">
-              </div>
-            </div>
-            <div class="company-container background-blue-3">
-              <h4>Developer Tooling</h4>
-              <div class="companies-box-2">
-              </div>
-            </div>
           </section>
-          <section id="generate-pdf">
-            <p>If you would like to download a PDF summarizing your selections, please click on "Send e-mail" and the "Generate a PDF" link will activate. This will allow us to reach out to you if we could provide further assistance in your selection process.</p>
-            <div class="side-by-side">
-              <a id="email-button" class="email-deselected">Send e-mail</a>
-              <a id="pdf-button" class="btn-deselected">Generate PDF</a>
-            </div>
-          </section>
+          <button id="pdf-button" class="btn-deselected">Generate PDF</button>
         </section>
       </section>
     </main>
