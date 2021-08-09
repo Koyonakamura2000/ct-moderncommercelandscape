@@ -254,8 +254,8 @@ main {
 .inblock-icon-2 {
   width: .8rem;
   position: absolute;
-  bottom: .5rem;
-  right: .5rem;
+  bottom: .3rem;
+  right: .3rem;
 }
 
 .inblock-icon:hover, .inblock-icon-2:hover {
@@ -449,10 +449,11 @@ main {
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .logo {
-  width: 100%;
+  width: 90%;
 }
 
 #filters {
@@ -543,18 +544,23 @@ main {
 }
 
 #company-add-btn {
-  background-color: #0CC8F1;
   text-decoration: none;
   border: none;
-  padding: .3rem;
-  color: white;
+  background-color: white;
+  padding: .3rem .5rem .3rem .5rem;
+  color: #0CC8F1;
   font-weight: bold;
   font-size: .7rem;
-  border-radius: .3rem;
-  box-shadow: 0px 4px 4px 0px #00000040;
   align-self: flex-end;
   position: absolute;
-  bottom: 1rem;
+  bottom: .5rem;
+  border-radius: .3rem;
+}
+
+#company-add-btn:hover {
+  background-color: #0CC8F1;
+  color: white;
+  cursor: pointer;
 }
 
 .one-column {
@@ -684,9 +690,9 @@ main {
   position: absolute;
   width: 15rem;
   background-color: white;
-  left: 3rem;
+  left: 4rem;
   border: solid;
-  top: 2rem;
+  top: 3rem;
   border-color: #8bde22;
   border-radius: .5rem;
   z-index: 1;
@@ -705,6 +711,10 @@ main {
   position: absolute;
   right: .5rem;
   top: .5rem;
+}
+
+.popup-icon:hover {
+  cursor: pointer;
 }
 
 .btn-deselected:hover {

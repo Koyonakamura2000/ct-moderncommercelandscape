@@ -495,7 +495,7 @@
       closeIcon.classList.add("popup-icon");
       closeIcon.addEventListener("click", function(e) {closePopup(e, company)});
       let description = document.createElement("p");
-      description.innerText = companyInfo["description"];
+      description.innerText = companyInfo[companyName]["description"];
       let addBtn = document.createElement("button");
       addBtn.id = "company-add-btn";
       addBtn.innerText = "Add to List";
@@ -630,135 +630,6 @@
     updateBox(category, []);
     updateFilters(category);
   }
-
-  // function updateFilters() {
-  //   let companies = id("companies-box").getElementsByClassName("hidden");
-  //   let attributesDict = {"Regions Served": [], "Funding to Date ($)": [], "Employee Count": []};
-  //   // companyInfo["Brightcove"] = {"image": "", "description": "", "contact": "", "attributes": {"Regions Served": [], "Funding to Date ($)": 0, "Employee Count": 0}};
-  //   for(let i = 0; i < companies.length; i++) {
-  //     if(companies[i].innerText in companyInfo) {
-  //       let companyAttributes = companyInfo[companies[i].innerText]["attributes"];
-  //       for(let attribute in companyAttributes) {
-  //         if(attribute == "Regions Served") { // special case bc arrays instead of strings/numbers
-  //           for(let j = 0; j < companyAttributes[attribute].length; j++) {
-  //             if(!attributesDict[attribute].includes(companyAttributes[attribute][j])) {
-  //               attributesDict[attribute].push(companyAttributes[attribute][j]);
-  //             }
-  //           }
-  //         } else {
-  //           if(!attributesDict[attribute].includes(companyAttributes[attribute])) {
-  //             attributesDict[attribute].push(companyAttributes[attribute]);
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   updateFiltersHTML(attributesDict);
-  // }
-  //
-  // function updateFiltersHTML(attributes) {
-  //   let filterSection = id("filters");
-  //   while(filterSection.firstChild) {
-  //     filterSection.removeChild(filterSection.firstChild);
-  //   }
-  //   let heading = document.createElement("h1");
-  //   heading.innerText = "Filters (Click to select):";
-  //   filterSection.appendChild(heading);
-  //   for(let attribute in attributes) {
-  //     let newRow = document.createElement("div");
-  //     newRow.classList.add("filters-row");
-  //     let filterType = document.createElement("h3");
-  //     filterType.innerText = attribute;
-  //     newRow.appendChild(filterType);
-  //     let filterBox = document.createElement("div");
-  //     filterBox.classList.add("filters-box");
-  //     for(let i = 0; i < attributes[attribute].length; i++) {
-  //       let newFilterValue = document.createElement("div");
-  //       newFilterValue.classList.add("filter");
-  //       newFilterValue.innerText = attributes[attribute][i];
-  //       newFilterValue.addEventListener("click", applyFilter.bind(newFilterValue));
-  //       filterBox.appendChild(newFilterValue);
-  //     }
-  //     newRow.appendChild(filterBox);
-  //     filterSection.appendChild(newRow);
-  //   }
-  // }
-  //
-  // function applyFilter() {
-  //   // simple case - for regions
-  //   if(this.parentNode.parentNode.firstChild.innerText == "Regions Served") {
-  //     if(this.classList.contains("filter")) {
-  //       this.classList.remove("filter");
-  //       this.classList.add("filter-selected");
-  //     } else {
-  //       this.classList.remove("filter-selected");
-  //       this.classList.add("filter");
-  //     }
-  //   } else {
-  //     let currentFilter = this.parentNode.getElementsByClassName("filter-selected")[0];
-  //     if(currentFilter == undefined) {
-  //       this.classList.remove("filter");
-  //       this.classList.add("filter-selected");
-  //     } else if(currentFilter.innerText != this.innerText) {
-  //       currentFilter.classList.remove("filter-selected");
-  //       currentFilter.classList.add("filter");
-  //       this.classList.remove("filter");
-  //       this.classList.add("filter-selected");
-  //     } else {
-  //       this.classList.remove("filter-selected");
-  //       this.classList.add("filter");
-  //     }
-  //   }
-  //   let filters = calculateFilters();
-  //   filterCompanies(filters);
-  // }
-  //
-  // // returns dictionary of filters applied
-  // function calculateFilters() {
-  //   let filters = {};
-  //   let filterRows = id("filters").getElementsByClassName("filters-row");
-  //   for(let i = 0; i < filterRows.length; i++) {
-  //     let filterType = filterRows[i].firstChild.innerText;
-  //     let filtersArray = [];
-  //     let selectedFilters = filterRows[i].getElementsByClassName("filter-selected");
-  //     for(let j = 0; j < selectedFilters.length; j++) {
-  //       filtersArray.push(selectedFilters[j].innerText);
-  //     }
-  //     filters[filterType] = filtersArray;
-  //   }
-  //   return filters;
-  // }
-  //
-  // function filterCompanies(filters) {
-  //   let companies = id("companies-box").querySelectorAll(".company, .company-selected");
-  //   // first reset - remove class "hidden"
-  //   for(let i = 0; i < companies.length; i++) {
-  //     companies[i].classList.remove("hidden");
-  //     let name = companies[i].getElementsByClassName("hidden")[0].innerText;
-  //     let companyAttributesDict = companyInfo[name]["attributes"];
-  //     let meetsRequirement = true;
-  //     for(let attribute in companyAttributesDict) {
-  //       if(attribute in filters) {
-  //         if(attribute == "Regions Served") {
-  //           for(let i = 0; i < filters[attribute].length; i++) {
-  //             if(!companyAttributesDict[attribute].includes(filters[attribute][i])) {
-  //               meetsRequirement = false;
-  //             }
-  //           }
-  //         } else {
-  //           for(let i = 0; i < filters[attribute].length; i++) {
-  //             if(companyAttributesDict[attribute] != filters[attribute][i]) { // can only select one option for funding/company size
-  //               meetsRequirement = false;
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //     if(!meetsRequirement) {
-  //       companies[i].classList.add("hidden");
-  //     }
-  //   }
-  // }
 
   function showCategoryView() {
     id("prompt-view-link").classList.remove("hidden");
