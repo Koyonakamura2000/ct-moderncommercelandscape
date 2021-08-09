@@ -144,7 +144,7 @@ companyInfo["Adobe Experience Manager"] = {"image": "images/logos/adobeexperienc
 companyInfo["Acquia (Drupal)"] = {"image": "images/logos/acquiadrupal.jpg", "description": "Placeholder for company description - fill in later.", "contact": "123-567-9872", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
 companyInfo["Styla"] = {"image": "images/logos/styla.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
 companyInfo["Akamai"] = {"image": "images/logos/akamai.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["AWS CloudFront"] = {"image": "images/logos/awscloudfront.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+companyInfo["AWS Cloudfront"] = {"image": "images/logos/awscloudfront.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
 companyInfo["Google Cloud CDN"] = {"image": "images/logos/googlecloud.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
 companyInfo["Fastly"] = {"image": "images/logos/fastly.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
 companyInfo["Azure CDN"] = {"image": "images/logos/azure.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
@@ -225,6 +225,22 @@ companyInfo["Vamp.io"] = {"image": "images/logos/vamp.png", "description": "Plac
 companyInfo["Ashiba"] = {"image": "images/logos/ashiba.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
 companyInfo["Pipe17"] = {"image": "images/logos/pipe17.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
 companyInfo["Workato"] = {"image": "images/logos/workato.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
+
+// attribute:type dictionary (e.g., "Regions Served": "array")
+var attributeTypes = {};
+for(let company in companyInfo) {
+  for(let attribute in companyInfo[company]["attributes"]) {
+    if(!(attribute in attributeTypes)) {
+      console.log(attribute);
+      if(Array.isArray(companyInfo[company]["attributes"][attribute])) {
+        attributeTypes[attribute] = "array";
+      } else {
+        attributeTypes[attribute] = "string";
+      }
+    }
+  }
+}
+console.log(attributeTypes);
 
 var categoryColors = {};
 categoryColors["Frontend"] = "background-blue-1";

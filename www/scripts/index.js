@@ -28,7 +28,6 @@
         selectionBoxes[i].removeChild(selectionBoxes[i].firstChild);
       }
     }
-    console.log(id("option-box").getElementsByClassName("category-grid-container"));
     if(id("option-box").getElementsByClassName("category-grid-container").length == 0) {
       id("category-view-link").classList.remove("hidden");
     } else {
@@ -268,8 +267,8 @@
       newLego.classList.add("lego-selected");
       newLego.innerHTML = "<h4>" + selectionArray[0] + "</h4>";
       newLego.addEventListener("click", updateContent.bind(newLego));
-      updateBox(newLego.innerText.trim());
-      updateFilters();
+      updateBox(newLego.innerText.trim(), []);
+      updateFilters(newLego.innerText.trim());
       legoBox.appendChild(newLego);
     }
     for(let i = 1; i < selectionArray.length; i++) {
@@ -281,7 +280,8 @@
     }
   }
 
-  function updateBox(category) {
+  // updates list of vendors for a category depending on filters array
+  function updateBox(category, filters) {
     let companyBox = id("companies-box");
     // first remove all existing childnodes
     while(companyBox.firstChild) {
@@ -290,15 +290,13 @@
     if(category in categoryCompanies) {
       for(let i = 0; i < categoryCompanies[category].length; i++) {
         let companyName = categoryCompanies[category][i];
-        if(companyName in companyInfo) {
+        if(passesFilters(companyName, filters)) {
           let newCompany = document.createElement("div");
           newCompany.classList.add("company");
           let companyName = categoryCompanies[category][i];
-          newCompany.innerHTML = "<div><h2 class=\"hidden\">" + companyName + "</h2><img class=\"logo\" src=\"" + companyInfo[companyName]["image"] + "\" alt=\"" + companyName + "\"/></div>";
+          newCompany.innerHTML = "<div class=\"logo-container\"><h2 class=\"hidden\">" + companyName + "</h2><img class=\"logo\" src=\"" + companyInfo[companyName]["image"] + "\" alt=\"" + companyName + "\"/></div>";
           newCompany.addEventListener("click", expandDetails.bind(newCompany));
           companyBox.appendChild(newCompany);
-        } else {
-          console.log("update companyInfo for " + companyName);
         }
       }
     } else {
@@ -308,33 +306,219 @@
     }
   }
 
-  function expandDetails() {
-    let currentChoice = document.getElementsByClassName("company-selected")[0];
-    if(currentChoice != undefined) {
-      currentChoice.classList.remove("company-selected");
-      currentChoice.classList.add("company");
-    }
-    this.classList.remove("company");
-    this.classList.add("company-selected");
-    let companyName = this.getElementsByClassName("hidden")[0].innerText;
-    if(companyName in companyInfo) {
-      let detailBox = id("company-details");
-      detailBox.classList.remove("hidden");
-      while(detailBox.firstChild) {
-        detailBox.removeChild(detailBox.firstChild);
+  // company = company name, filters = dictionary of attributes that need to be met
+  function passesFilters(company, filters) {
+    let isValid = true;
+    let companyAttributes = companyInfo[company]["attributes"];
+    for(let filter in filters) {
+      // filter is an array of attributes
+      let values = filters[filter];
+      for(let i = 0; i < values.length; i++) {
+        if(!(filter in companyAttributes)) {
+          isValid = false;
+        } else if(Array.isArray(companyAttributes[filter])) {
+          for(let j = 0; j < values.length; j++) {
+            if(!companyAttributes[filter].includes(values[j])) {
+              isValid = false;
+            }
+          }
+        } else if(!values.includes(companyAttributes[filter].toString())) {
+          isValid = false;
+        }
       }
-      let header = document.createElement("h1");
-      header.innerText = companyName;
-      detailBox.appendChild(header);
+    }
+    return isValid;
+  }
+
+  // initial update of filter box - individual or multiple select depending on attribute
+  function updateFilters(category) {
+    let filtersDict = findAttributes(category);
+    let container = id("filters");
+    while(container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+    let heading = document.createElement("h1");
+    heading.innerText = "Filters (Click to Select):";
+    container.appendChild(heading);
+    for(let attribute in filtersDict) {
+      let filterContainer = document.createElement("div");
+      filterContainer.classList.add("filters-row");
+      let description = document.createElement("h3");
+      description.innerText = attribute;
+      filterContainer.appendChild(description);
+      let options = document.createElement("div");
+      options.classList.add("filters-box");
+      for(let i = 0; i < filtersDict[attribute].length; i++) {
+        let option = document.createElement("div");
+        option.classList.add("filter");
+        option.innerText = filtersDict[attribute][i];
+        option.addEventListener("click", applyFilter.bind(option));
+        options.appendChild(option);
+      }
+      filterContainer.appendChild(options);
+      container.appendChild(filterContainer);
+    }
+  }
+
+  // clicking on filter will 1. toggle its state on/off, 2. update list of companies accordingly
+  function applyFilter() {
+    let value = this.innerText;
+    let attribute = this.parentNode.parentNode.querySelector("h3").innerText;
+    if(valuesAreArray(attribute)) {
+      toggleFilter(this);
+    } else {
+      let selectedFilter = this.parentNode.querySelector(".filter-selected");
+      if(selectedFilter != null && !this.classList.contains("filter-selected")) {
+        toggleFilter(selectedFilter);
+      }
+      toggleFilter(this);
+    }
+    filterCompanies();
+  }
+
+  // filter = .filter or .filter-selected div element
+  function toggleFilter(filter) {
+    if(filter.classList.contains("filter")) {
+      filter.classList.remove("filter");
+      filter.classList.add("filter-selected");
+    } else {
+      filter.classList.remove("filter-selected");
+      filter.classList.add("filter");
+    }
+  }
+
+  function filterCompanies() {
+    let filters = id("filters");
+    let selectedFiltersDict = {};
+    let filterRows = filters.getElementsByClassName("filters-row");
+    for(let i = 0; i < filterRows.length; i++) {
+      let attribute = filterRows[i].querySelector("h3").innerText;
+      let selectedFilters = filterRows[i].getElementsByClassName("filter-selected");
+      if(attribute in selectedFiltersDict) {
+        for(let j = 0; j < selectedFilters.length; j++) {
+          if(!selectedFiltersDict[attribute].includes(selectedFilters[j].innerText)) {
+            selectedFiltersDict[attribute].push(selectedFilters[j].innerText);
+          }
+        }
+      } else {
+        let filterAry = [];
+        for(let j = 0; j < selectedFilters.length; j++) {
+          filterAry.push(selectedFilters[j].innerText);
+        }
+        selectedFiltersDict[attribute] = filterAry;
+      }
+    }
+    // filter companies
+    hideCompanies(selectedFiltersDict);
+  }
+
+  function hideCompanies(dict) {
+    let companies = id("companies-box").querySelectorAll("div");
+    for(let i = 0; i < companies.length; i++) {
+      if(passesFilters(companies[i].querySelector(".hidden").innerText, dict)) {
+        companies[i].classList.remove("hidden");
+      } else {
+        companies[i].classList.add("hidden");
+      }
+    }
+  }
+
+  // returns true if the values for an attribute are arrays (e.g., Regions Served) by checking the first company in companyInfo
+  function valuesAreArray(attribute) {
+    let isArray = false;
+    if(attributeTypes[attribute] == "array") {
+      isArray = true;
+    }
+    return isArray;
+  }
+
+  // returns list of attributes that each company in category has
+  function findAttributes(category) {
+    let allAttributes = {};
+    for(let i = 0; i < categoryCompanies[category].length; i++) {
+      let companyName = categoryCompanies[category][i];
+      if(companyName in companyInfo) {
+        let companyAttributes = companyInfo[companyName]["attributes"];
+        for(let attribute in companyAttributes) {
+          if(attribute in allAttributes) {
+            if(Array.isArray(companyAttributes[attribute])) { // e.g. regions served
+              for(let j = 0; j < companyAttributes[attribute].length; j++) {
+                let value = companyAttributes[attribute][j];
+                if(!allAttributes[attribute].includes(value)) {
+                  allAttributes[attribute].push(value);
+                }
+              }
+            } else {
+              if(!allAttributes[attribute].includes(companyAttributes[attribute])) {
+                allAttributes[attribute].push(companyAttributes[attribute]);
+              }
+            }
+          } else {
+            if(Array.isArray(companyAttributes[attribute])) {
+              let ary = [];
+              for(let i = 0; i < companyAttributes[attribute].length; i++) {
+                ary.push(companyAttributes[attribute][i]);
+              }
+              allAttributes[attribute] = ary;
+            } else {
+              let ary = [];
+              ary.push(companyAttributes[attribute]);
+              allAttributes[attribute] = ary;
+            }
+          }
+        }
+      }
+    }
+    return allAttributes;
+  }
+
+  // popup with additional information about company
+  // add button that adds company to vendor shortlist
+  function expandDetails() {
+    let company = this; // changing refernece to avoid key word when sending to closepopup
+    let oldSelection = id("companies-box").querySelector(".company-selected");
+    if(oldSelection != null) {
+      oldSelection.removeChild(oldSelection.querySelector(".popup"));
+      oldSelection.classList.remove("company-selected");
+      oldSelection.classList.add("company");
+    }
+    if(!this.classList.contains("company-selected")) {
+      this.classList.remove("company");
+      this.classList.add("company-selected");
+      let companyName = this.querySelector(".hidden").innerText;
+      let popup = document.createElement("div");
+      popup.classList.add("popup");
+      let nameContainer = document.createElement("h3");
+      nameContainer.innerText = companyName;
+      let closeIcon = document.createElement("img");
+      closeIcon.src = "images/icons/x.png";
+      closeIcon.classList.add("popup-icon");
+      closeIcon.addEventListener("click", function(e) {closePopup(e, company)});
       let description = document.createElement("p");
-      description.innerText = companyInfo[companyName]["description"];
-      detailBox.appendChild(description);
+      description.innerText = companyInfo["description"];
       let addBtn = document.createElement("button");
       addBtn.id = "company-add-btn";
       addBtn.innerText = "Add to List";
       addBtn.addEventListener("click", addToCompanyList.bind(companyName));
-      detailBox.appendChild(addBtn);
+      popup.appendChild(nameContainer);
+      popup.appendChild(description);
+      popup.appendChild(closeIcon);
+      popup.appendChild(addBtn);
+      this.appendChild(popup);
+      this.removeEventListener("click", expandDetails);
     }
+  }
+
+  function stopBubbling(evt) {
+    evt.stopPropagation();
+    evt.cancelBubble = true;
+  }
+
+  function closePopup(e, company) {
+    company.removeChild(company.querySelector(".popup"));
+    company.classList.remove("company-selected");
+    company.classList.add("company");
+    stopBubbling(e);
   }
 
   // this = company name (string)
@@ -382,6 +566,7 @@
     companyName.innerText = name;
     newCompany.appendChild(companyName);
     let imgContainer = document.createElement("div");
+    imgContainer.classList.add("logo-container");
     let img = document.createElement("img");
     img.classList.add("logo");
     img.src = companyInfo[name]["image"];
@@ -400,7 +585,6 @@
     let isAdded = false;
     let selections = id("selected-companies").getElementsByClassName("company-container");
     for(let i = 0; i < selections.length; i++) {
-      console.log(selections[i]);
       if(selections[i].querySelector("h4").innerText.trim() == category.trim()) {
         let addedCompanies = selections[i].querySelector("div").getElementsByClassName("company-blue");
         for(let j = 0; j < addedCompanies.length; j++) {
@@ -435,146 +619,146 @@
     return root;
   }
 
+  // update content when switching category tabs
   function updateContent() {
-    id("company-details").classList.add("hidden");
-    let currentLego = document.getElementsByClassName("lego-selected")[0];
+    let currentLego = id("lego-box").querySelector(".lego-selected");
     currentLego.classList.remove("lego-selected");
     currentLego.classList.add("lego-unselected");
     this.classList.remove("lego-unselected");
     this.classList.add("lego-selected");
     let category = this.innerText.trim();
-    updateBox(category);
-    updateFilters();
+    updateBox(category, []);
+    updateFilters(category);
   }
 
-  function updateFilters() {
-    let companies = id("companies-box").getElementsByClassName("hidden");
-    let attributesDict = {"Regions Served": [], "Funding to Date ($)": [], "Employee Count": []};
-    // companyInfo["Brightcove"] = {"image": "", "description": "", "contact": "", "attributes": {"Regions Served": [], "Funding to Date ($)": 0, "Employee Count": 0}};
-    for(let i = 0; i < companies.length; i++) {
-      if(companies[i].innerText in companyInfo) {
-        let companyAttributes = companyInfo[companies[i].innerText]["attributes"];
-        for(let attribute in companyAttributes) {
-          if(attribute == "Regions Served") { // special case bc arrays instead of strings/numbers
-            for(let j = 0; j < companyAttributes[attribute].length; j++) {
-              if(!attributesDict[attribute].includes(companyAttributes[attribute][j])) {
-                attributesDict[attribute].push(companyAttributes[attribute][j]);
-              }
-            }
-          } else {
-            if(!attributesDict[attribute].includes(companyAttributes[attribute])) {
-              attributesDict[attribute].push(companyAttributes[attribute]);
-            }
-          }
-        }
-      }
-    }
-    updateFiltersHTML(attributesDict);
-  }
-
-  function updateFiltersHTML(attributes) {
-    let filterSection = id("filters");
-    while(filterSection.firstChild) {
-      filterSection.removeChild(filterSection.firstChild);
-    }
-    let heading = document.createElement("h1");
-    heading.innerText = "Filters (Click to select):";
-    filterSection.appendChild(heading);
-    for(let attribute in attributes) {
-      let newRow = document.createElement("div");
-      newRow.classList.add("filters-row");
-      let filterType = document.createElement("h3");
-      filterType.innerText = attribute;
-      newRow.appendChild(filterType);
-      let filterBox = document.createElement("div");
-      filterBox.classList.add("filters-box");
-      for(let i = 0; i < attributes[attribute].length; i++) {
-        let newFilterValue = document.createElement("div");
-        newFilterValue.classList.add("filter");
-        newFilterValue.innerText = attributes[attribute][i];
-        newFilterValue.addEventListener("click", applyFilter.bind(newFilterValue));
-        filterBox.appendChild(newFilterValue);
-      }
-      newRow.appendChild(filterBox);
-      filterSection.appendChild(newRow);
-    }
-  }
-
-  function applyFilter() {
-    // simple case - for regions
-    if(this.parentNode.parentNode.firstChild.innerText == "Regions Served") {
-      if(this.classList.contains("filter")) {
-        this.classList.remove("filter");
-        this.classList.add("filter-selected");
-      } else {
-        this.classList.remove("filter-selected");
-        this.classList.add("filter");
-      }
-    } else {
-      let currentFilter = this.parentNode.getElementsByClassName("filter-selected")[0];
-      if(currentFilter == undefined) {
-        this.classList.remove("filter");
-        this.classList.add("filter-selected");
-      } else if(currentFilter.innerText != this.innerText) {
-        currentFilter.classList.remove("filter-selected");
-        currentFilter.classList.add("filter");
-        this.classList.remove("filter");
-        this.classList.add("filter-selected");
-      } else {
-        this.classList.remove("filter-selected");
-        this.classList.add("filter");
-      }
-    }
-    let filters = calculateFilters();
-    filterCompanies(filters);
-  }
-
-  // returns dictionary of filters applied
-  function calculateFilters() {
-    let filters = {};
-    let filterRows = id("filters").getElementsByClassName("filters-row");
-    for(let i = 0; i < filterRows.length; i++) {
-      let filterType = filterRows[i].firstChild.innerText;
-      let filtersArray = [];
-      let selectedFilters = filterRows[i].getElementsByClassName("filter-selected");
-      for(let j = 0; j < selectedFilters.length; j++) {
-        filtersArray.push(selectedFilters[j].innerText);
-      }
-      filters[filterType] = filtersArray;
-    }
-    return filters;
-  }
-
-  function filterCompanies(filters) {
-    let companies = id("companies-box").querySelectorAll(".company, .company-selected");
-    // first reset - remove class "hidden"
-    for(let i = 0; i < companies.length; i++) {
-      companies[i].classList.remove("hidden");
-      let name = companies[i].getElementsByClassName("hidden")[0].innerText;
-      let companyAttributesDict = companyInfo[name]["attributes"];
-      let meetsRequirement = true;
-      for(let attribute in companyAttributesDict) {
-        if(attribute in filters) {
-          if(attribute == "Regions Served") {
-            for(let i = 0; i < filters[attribute].length; i++) {
-              if(!companyAttributesDict[attribute].includes(filters[attribute][i])) {
-                meetsRequirement = false;
-              }
-            }
-          } else {
-            for(let i = 0; i < filters[attribute].length; i++) {
-              if(companyAttributesDict[attribute] != filters[attribute][i]) { // can only select one option for funding/company size
-                meetsRequirement = false;
-              }
-            }
-          }
-        }
-      }
-      if(!meetsRequirement) {
-        companies[i].classList.add("hidden");
-      }
-    }
-  }
+  // function updateFilters() {
+  //   let companies = id("companies-box").getElementsByClassName("hidden");
+  //   let attributesDict = {"Regions Served": [], "Funding to Date ($)": [], "Employee Count": []};
+  //   // companyInfo["Brightcove"] = {"image": "", "description": "", "contact": "", "attributes": {"Regions Served": [], "Funding to Date ($)": 0, "Employee Count": 0}};
+  //   for(let i = 0; i < companies.length; i++) {
+  //     if(companies[i].innerText in companyInfo) {
+  //       let companyAttributes = companyInfo[companies[i].innerText]["attributes"];
+  //       for(let attribute in companyAttributes) {
+  //         if(attribute == "Regions Served") { // special case bc arrays instead of strings/numbers
+  //           for(let j = 0; j < companyAttributes[attribute].length; j++) {
+  //             if(!attributesDict[attribute].includes(companyAttributes[attribute][j])) {
+  //               attributesDict[attribute].push(companyAttributes[attribute][j]);
+  //             }
+  //           }
+  //         } else {
+  //           if(!attributesDict[attribute].includes(companyAttributes[attribute])) {
+  //             attributesDict[attribute].push(companyAttributes[attribute]);
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  //   updateFiltersHTML(attributesDict);
+  // }
+  //
+  // function updateFiltersHTML(attributes) {
+  //   let filterSection = id("filters");
+  //   while(filterSection.firstChild) {
+  //     filterSection.removeChild(filterSection.firstChild);
+  //   }
+  //   let heading = document.createElement("h1");
+  //   heading.innerText = "Filters (Click to select):";
+  //   filterSection.appendChild(heading);
+  //   for(let attribute in attributes) {
+  //     let newRow = document.createElement("div");
+  //     newRow.classList.add("filters-row");
+  //     let filterType = document.createElement("h3");
+  //     filterType.innerText = attribute;
+  //     newRow.appendChild(filterType);
+  //     let filterBox = document.createElement("div");
+  //     filterBox.classList.add("filters-box");
+  //     for(let i = 0; i < attributes[attribute].length; i++) {
+  //       let newFilterValue = document.createElement("div");
+  //       newFilterValue.classList.add("filter");
+  //       newFilterValue.innerText = attributes[attribute][i];
+  //       newFilterValue.addEventListener("click", applyFilter.bind(newFilterValue));
+  //       filterBox.appendChild(newFilterValue);
+  //     }
+  //     newRow.appendChild(filterBox);
+  //     filterSection.appendChild(newRow);
+  //   }
+  // }
+  //
+  // function applyFilter() {
+  //   // simple case - for regions
+  //   if(this.parentNode.parentNode.firstChild.innerText == "Regions Served") {
+  //     if(this.classList.contains("filter")) {
+  //       this.classList.remove("filter");
+  //       this.classList.add("filter-selected");
+  //     } else {
+  //       this.classList.remove("filter-selected");
+  //       this.classList.add("filter");
+  //     }
+  //   } else {
+  //     let currentFilter = this.parentNode.getElementsByClassName("filter-selected")[0];
+  //     if(currentFilter == undefined) {
+  //       this.classList.remove("filter");
+  //       this.classList.add("filter-selected");
+  //     } else if(currentFilter.innerText != this.innerText) {
+  //       currentFilter.classList.remove("filter-selected");
+  //       currentFilter.classList.add("filter");
+  //       this.classList.remove("filter");
+  //       this.classList.add("filter-selected");
+  //     } else {
+  //       this.classList.remove("filter-selected");
+  //       this.classList.add("filter");
+  //     }
+  //   }
+  //   let filters = calculateFilters();
+  //   filterCompanies(filters);
+  // }
+  //
+  // // returns dictionary of filters applied
+  // function calculateFilters() {
+  //   let filters = {};
+  //   let filterRows = id("filters").getElementsByClassName("filters-row");
+  //   for(let i = 0; i < filterRows.length; i++) {
+  //     let filterType = filterRows[i].firstChild.innerText;
+  //     let filtersArray = [];
+  //     let selectedFilters = filterRows[i].getElementsByClassName("filter-selected");
+  //     for(let j = 0; j < selectedFilters.length; j++) {
+  //       filtersArray.push(selectedFilters[j].innerText);
+  //     }
+  //     filters[filterType] = filtersArray;
+  //   }
+  //   return filters;
+  // }
+  //
+  // function filterCompanies(filters) {
+  //   let companies = id("companies-box").querySelectorAll(".company, .company-selected");
+  //   // first reset - remove class "hidden"
+  //   for(let i = 0; i < companies.length; i++) {
+  //     companies[i].classList.remove("hidden");
+  //     let name = companies[i].getElementsByClassName("hidden")[0].innerText;
+  //     let companyAttributesDict = companyInfo[name]["attributes"];
+  //     let meetsRequirement = true;
+  //     for(let attribute in companyAttributesDict) {
+  //       if(attribute in filters) {
+  //         if(attribute == "Regions Served") {
+  //           for(let i = 0; i < filters[attribute].length; i++) {
+  //             if(!companyAttributesDict[attribute].includes(filters[attribute][i])) {
+  //               meetsRequirement = false;
+  //             }
+  //           }
+  //         } else {
+  //           for(let i = 0; i < filters[attribute].length; i++) {
+  //             if(companyAttributesDict[attribute] != filters[attribute][i]) { // can only select one option for funding/company size
+  //               meetsRequirement = false;
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //     if(!meetsRequirement) {
+  //       companies[i].classList.add("hidden");
+  //     }
+  //   }
+  // }
 
   function showCategoryView() {
     id("prompt-view-link").classList.remove("hidden");
