@@ -495,7 +495,7 @@
       closeIcon.classList.add("popup-icon");
       closeIcon.addEventListener("click", function(e) {closePopup(e, company)});
       let description = document.createElement("p");
-      description.innerText = companyInfo[companyName]["description"];
+      description.innerHTML = companyInfo[companyName]["description"];
       let addBtn = document.createElement("button");
       addBtn.id = "company-add-btn";
       addBtn.innerText = "Add to List";
