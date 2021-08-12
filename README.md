@@ -16,21 +16,21 @@ This document will explain how to make changes to the information displayed on m
 
 #### Making changes: data
 
-##### Add/remove a prompt on the home page
+##### ADD/REMOVE A PROMPT ON THE HOME PAGE
 Format: `promptDict["Prompt"] = ["Relevant Category 1", "Relevant Category 2", "Relevant Category 3", ...];` (best with 1-4 categories)\
 To remove, simply comment out the appropriate line of code.
 
-##### Add/remove a category
-**NOTE: Category will not appear on page until you also add it to categoryDescription**
+##### ADD/REMOVE A CATEGORY
+*NOTE: Category will not appear on page until you also add it to categoryDescription*\
 Format: `categoryTree["Supercategory"] = ["Existing Category 1", "Existing Category 2", "NEW CATEGORY"];`\
 Add the new category to the appropriate supercategory (i.e., the most appropriate parent that exists in the list of categories). If the supercategory has no children yet (i.e., not a key in categoryTree, but supercategory is a value in categoryTree), make a new relationship following this format: `categoryTree["Supercategory"] = ["NEW CATEGORY"]`;\
 To remove, comment out references where necessary.
 
-###### Add/edit/remove description for a category
+###### ADD/EDIT/REMOVE DESCRIPTION FOR A CATEGORY
 Format: `categoryDescription["Category"] = "Beginner-friendly description";`\
 To remove, comment out the appropriate line of code.
 
-##### Add/edit/remove a vendor
+##### ADD/EDIT/REMOVE A VENDOR
 **To add**\
 Step 1: add vendor to categoryVendors where appropriate, e.g. `categoryVendors["Social Listing"] = ["Tribe", "NEW VENDOR"];`\
 Step 2: add vendor information to vendorInfo (follow example format below).\
@@ -42,7 +42,7 @@ Navigate to the appropriate line of code referencing the vendor and edit as nece
 **To remove**\
 Comment out vendor name references in categoryVendors, e.g. `categoryVendors["CDN"] = ["Akamai", "AWS Cloudfront", /*"Google Cloud CDN", */"Fastly", "Azure CDN", "Cloudflare"];`
 
-##### Change displayed filters
+##### CHANGE DISPLAYED FILTERS
 The filters panel only shows filters for attributes specified in filterTypes. To change, simply add/remove attributes to the filterTypes array, making sure that the attribute is typed the same as in the `vendorInfo[vendor]["attributes"]` array\
 Example Format: `filterTypes = ["Regions Served", "MACH Certified", "Gartner/Forrester Industry Leader"];`
 
@@ -51,3 +51,8 @@ Example Format: `filterTypes = ["Regions Served", "MACH Certified", "Gartner/For
 `style-pdf.css` Stylesheet for the PDF output page (i.e. the page that pops up after clicking "Generate Summary")\
 `index.js` Script for the website\
 `pdf.js` Script for the PDF output page
+
+## Next steps
+- Display list of partners that vendors work with to aid selection
+- Simplify data entry/revision with a backend API
+- Collect user information

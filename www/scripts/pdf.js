@@ -41,9 +41,11 @@
           categoryName = category;
         }
       }
-      let contact = vendorInfo[companies[i]]["contact"];
       iconRow.appendChild(makeIcon("category", categoryName));
-      iconRow.appendChild(makeIcon("contact", contact));
+      if("contact" in vendorInfo[companies[i]]) {
+        let contact = vendorInfo[companies[i]]["contact"];
+        iconRow.appendChild(makeIcon("contact", contact));
+      }
       infoContainer.appendChild(iconRow);
       companyContainer.appendChild(infoContainer);
       container.appendChild(companyContainer);
