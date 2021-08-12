@@ -96,143 +96,149 @@ categoryTree["Analytics"] = ["Customer Journey"];
 categoryTree["Globalization/Localization"] = ["Translations"];
 categoryTree["Developer Tooling"] = ["GraphQL Client", "GraphQL Server", "Identity & Access Management", "Continuous Delivery Tooling"];
 
-// key: category; value: array of companies specializing in category
-// if the category doesn't exist here (i.e., no companies associated with category), it will not show on front end.
-var categoryCompanies = {};
-categoryCompanies["CDN"] = ["Akamai", "AWS Cloudfront", "Google Cloud CDN", "Fastly", "Azure CDN", "Cloudflare"];
-categoryCompanies["Load Optimization"] = ["Moovweb", "Yottaa"];
-categoryCompanies["Frontend-as-a-Service"] = ["Frontastic", "Vue Storefront", "commerce-ui", "Shogun"];
-categoryCompanies["SEO"] = ["Bloomreach"];
-categoryCompanies["Frontend"] = ["Bloomreach Experience Platform (Hippo)", "Adobe Experience Manager", "Acquia (Drupal)", "Styla"];
-categoryCompanies["Clienteling"] = ["Tulip", "NewStore"];
-categoryCompanies["Content Management"] = ["Contentstack", "Contentful", "Amplience", "GraphCMS", "CoreMedia"];
-categoryCompanies["DAM"] = ["Amplience", "Bynder", "CoreMedia", "Threekit", "Cloudinary"];
-categoryCompanies["Images"] = ["Scene7"];
-// categoryCompanies["Video"] = ["Brightcove"];
-categoryCompanies["Commerce"] = ["commercetools", "Storm Commerce", "Commerce Layer", "Four51", "emporix", "Episerver"];
-categoryCompanies["Single Page Checkout"] = ["Fast", "Bolt"];
-categoryCompanies["Payment"] = ["CyberSource", "Stripe", "Braintree", "Adyen"];
-categoryCompanies["Fraud"] = ["N38"];
-categoryCompanies["Taxes"] = ["Avalara", "Vertex"];
-categoryCompanies["Subscriptions"] = ["Chargebee"];
-categoryCompanies["Search"] = ["Constructor.io", "Coveo", "LucidWorks", "Attraqt"];
-categoryCompanies["Ratings & Reviews"] = ["Bazaarvoice", "Trustpilot"];
-categoryCompanies["Pricing"] = ["7Learnings"];
-categoryCompanies["Promotions"] = ["Talon.One", "XCCommerce", "Voucherify"];
-categoryCompanies["Social Listing"] = ["Tribe"];
-categoryCompanies["Loyalty"] = ["Voyado", "Antavo"];
-categoryCompanies["Personalization"] = ["trbo", "Dynamic Yield", "Rich Relevance", "Apptus", "Emarsys"];
-categoryCompanies["OMS"] = ["Fluent", "fulfillmenttools", "Manhattan Associates", "Sterling"];
-categoryCompanies["In-Store"] = ["NewStore", "Mercaux", "Tulip"];
-categoryCompanies["PIM"] = ["Riversand", "inRiver", "Pimcore"];
-categoryCompanies["Product Enrichment"] = ["Salsify"];
-categoryCompanies["Content Distribution/Syndication"] = ["Productsup"];
-categoryCompanies["Commerce Platforms"] = ["VTEX"];
-categoryCompanies["Marketplace Plaforms"] = ["Mirakl"];
-categoryCompanies["Outbound Contract"] = ["SendGrid", "Twilio", "Postmark", "Mailchimp"];
-categoryCompanies["CPQ"] = ["Threekit"];
-categoryCompanies["GraphQL Client"] = ["Apollo"];
-categoryCompanies["GraphQL Server"] = ["Apollo"];
-categoryCompanies["Identity & Access Management"] = ["Auth0", "Azure Active Directory"];
-categoryCompanies["Continuous Delivery Tooling"] = ["Vamp.io", "Ashiba"];
-categoryCompanies["Connectivity/Integrations"] = ["Pipe17", "Workato"];
+// key: category; value: array of vendors specializing in category
+// if the category doesn't exist here (i.e., no vendors associated with category), it will not show on front end.
+var categoryVendors = {};
+categoryVendors["CDN"] = ["Akamai", "AWS Cloudfront", "Google Cloud CDN", "Fastly", "Azure CDN", "Cloudflare"];
+categoryVendors["Load Optimization"] = ["Moovweb", "Yottaa"];
+categoryVendors["Frontend-as-a-Service"] = ["Frontastic", "Vue Storefront", "commerce-ui", "Shogun"];
+categoryVendors["SEO"] = ["Bloomreach"];
+categoryVendors["Frontend"] = ["Bloomreach Experience Platform (Hippo)", "Adobe Experience Manager", "Acquia (Drupal)", "Styla"];
+categoryVendors["Clienteling"] = ["Tulip", "NewStore"];
+categoryVendors["Content Management"] = ["Contentstack", "Contentful", "Amplience", "GraphCMS", "CoreMedia"];
+categoryVendors["DAM"] = ["Amplience", "Bynder", "CoreMedia", "Threekit", "Cloudinary"];
+categoryVendors["Images"] = ["Scene7"];
+// categoryVendors["Video"] = ["Brightcove"];
+categoryVendors["Commerce"] = ["commercetools", "Storm Commerce", "Commerce Layer", "Four51", "emporix", "Episerver"];
+categoryVendors["Single Page Checkout"] = ["Fast", "Bolt"];
+categoryVendors["Payment"] = ["CyberSource", "Stripe", "Braintree", "Adyen"];
+categoryVendors["Fraud"] = ["N38"];
+categoryVendors["Taxes"] = ["Avalara", "Vertex"];
+categoryVendors["Subscriptions"] = ["Chargebee"];
+categoryVendors["Search"] = ["Constructor.io", "Coveo", "LucidWorks", "Attraqt"];
+categoryVendors["Ratings & Reviews"] = ["Bazaarvoice", "Trustpilot"];
+categoryVendors["Pricing"] = ["7Learnings"];
+categoryVendors["Promotions"] = ["Talon.One", "XCCommerce", "Voucherify"];
+categoryVendors["Social Listing"] = ["Tribe"];
+categoryVendors["Loyalty"] = ["Voyado", "Antavo"];
+categoryVendors["Personalization"] = ["trbo", "Dynamic Yield", "Rich Relevance", "Apptus", "Emarsys"];
+categoryVendors["OMS"] = ["Fluent", "fulfillmenttools", "Manhattan Associates", "Sterling"];
+categoryVendors["In-Store"] = ["NewStore", "Mercaux", "Tulip"];
+categoryVendors["PIM"] = ["Riversand", "inRiver", "Pimcore"];
+categoryVendors["Product Enrichment"] = ["Salsify"];
+categoryVendors["Content Distribution/Syndication"] = ["Productsup"];
+categoryVendors["Commerce Platforms"] = ["VTEX"];
+categoryVendors["Marketplace Plaforms"] = ["Mirakl"];
+categoryVendors["Outbound Contract"] = ["SendGrid", "Twilio", "Postmark", "Mailchimp"];
+categoryVendors["CPQ"] = ["Threekit"];
+categoryVendors["GraphQL Client"] = ["Apollo"];
+categoryVendors["GraphQL Server"] = ["Apollo"];
+categoryVendors["Identity & Access Management"] = ["Auth0", "Azure Active Directory"];
+categoryVendors["Continuous Delivery Tooling"] = ["Vamp.io", "Ashiba"];
+categoryVendors["Connectivity/Integrations"] = ["Pipe17", "Workato"];
 
-// key: company; value: dictionary with keys "logo" "description" "contact" "attributes" (dictionary with keys "Regions Served" (Array), "Funding to Date ($)", "Employee Count")
-var companyInfo = {};
-companyInfo["Bloomreach Experience Platform (Hippo)"] = {"image": "images/logos/bloomreach.png", "description": "<a href=\"https://www.bloomreach.com/\">Bloomreach</a> solutions combine the power of unified customer and product data with the speed and scale of AI and predictive decisioning, so you can deliver magical experiences that convert on any channel and every journey.", "contact": "1-111-111-1111", "attributes": {"Regions Served": ["USA", "Germany"], "Funding to Date\n($ in millions)": 247, "Employee Count": 500, "Year Founded": 2009, "MACH Certified": false, "GraphQL Support": false, "Gartner/Forrester\nIndustry Leader": true}, "links": {"url": "https://www.bloomreach.com", "Linkedin": "https://www.linkedin.com/company/bloomreach/", "Crunchbase": "https://www.crunchbase.com/organization/bloomreach", "G2": "https://www.g2.com/products/bloomreach-bloomreach/reviews"}};
-companyInfo["Adobe Experience Manager"] = {"image": "images/logos/adobeexperiencemanager.png", "description": "<a href=\"https://www.adobe.io/apis/experiencecloud/aem.html\">Adobe Experience Manager (AEM)</a>, is a comprehensive content management solution for building websites, mobile apps and forms. And it makes it easy to manage your marketing content and assets.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Acquia (Drupal)"] = {"image": "images/logos/acquiadrupal.jpg", "description": "<a href=\"https://www.acquia.com/\">Acquia</a> provides an unrivaled Enterprise Digital Experience Platform designed to help you build Drupal experiences that engage customers, enhance conversions and help your business stand out.", "contact": "123-567-9872", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
-companyInfo["Styla"] = {"image": "images/logos/styla.png", "description": "<a href=\"https://www.styla.com/\">Styla</a> is a platform that allows brands and retailers to: <ul><li>Regain control of your content and build personalised, branded experiences in minutes.</li> <li>Eliminate the risks, complexity, and lengthy timelines of building a frontend from scratch.</li><li>Explore limitless possibilities that boost premium digital experiences: agile, scalable and impactful.</li></ul>", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Akamai"] = {"image": "images/logos/akamai.png", "description": "<a href=\"https://www.akamai.com/\">Akamai</a> focuses on four areas: <ul><li>Protecting apps and APIs from credentials abuse</li><li>Enhancing customer web and mobile customer experience using data and automation.</li><li>Deliver high-quality media</li><li>Quickly integrate Akamai into existing developer workflows.</li></ul>", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["AWS Cloudfront"] = {"image": "images/logos/awscloudfront.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Google Cloud CDN"] = {"image": "images/logos/googlecloud.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Fastly"] = {"image": "images/logos/fastly.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Azure CDN"] = {"image": "images/logos/azure.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Cloudflare"] = {"image": "images/logos/cloudflare.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Moovweb"] = {"image": "images/logos/moovweb.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Yottaa"] = {"image": "images/logos/yottaa.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Netlify"] = {"image": "images/logos/netlify.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Frontastic"] = {"image": "images/logos/frontastic.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Vue Storefront"] = {"image": "images/logos/vuestorefront.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
-companyInfo["commerce-ui"] = {"image": "images/logos/commerce-ui.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Shogun"] = {"image": "images/logos/shogun.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
-companyInfo["Bloomreach"] = {"image": "images/logos/bloomreach.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Tulip"] = {"image": "images/logos/tulip.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
-companyInfo["NewStore"] = {"image": "images/logos/newstore.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Contentstack"] = {"image": "images/logos/contentstack.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
-companyInfo["Contentful"] = {"image": "images/logos/contentful.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Amplience"] = {"image": "images/logos/amplience.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 1000, "Employee Count": 0}};
-companyInfo["GraphCMS"] = {"image": "images/logos/graphcms.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["CoreMedia"] = {"image": "images/logos/coremedia.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
-companyInfo["Bynder"] = {"image": "images/logos/bynder.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Threekit"] = {"image": "images/logos/threekit.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
-companyInfo["Cloudinary"] = {"image": "images/logos/cloudinary.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Scene7"] = {"image": "images/logos/scene7.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
-companyInfo["Brightcove"] = {"image": "images/logos/brightcove.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["commercetools"] = {"image": "images/logos/commercetools.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
-companyInfo["Storm Commerce"] = {"image": "images/logos/stormcommerce.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Commerce Layer"] = {"image": "images/logos/commercelayer.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
-companyInfo["Four51"] = {"image": "images/logos/four51.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["emporix"] = {"image": "images/logos/emporix.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
-companyInfo["Episerver"] = {"image": "images/logos/episerver.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Fast"] = {"image": "images/logos/fast.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
-companyInfo["Bolt"] = {"image": "images/logos/bolt.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
-companyInfo["Cybersource"] = {"image": "images/logos/cybersource.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
-companyInfo["Stripe"] = {"image": "images/logos/stripe.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
-companyInfo["Braintree"] = {"image": "images/logos/braintree.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
-companyInfo["Adyen"] = {"image": "images/logos/adyen.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
-companyInfo["NS8"] = {"image": "images/logos/ns8.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 0}};
-companyInfo["Avalara"] = {"image": "images/logos/avalara.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
-companyInfo["Vertex"] = {"image": "images/logos/vertex.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 0}};
-companyInfo["Chargebee"] = {"image": "images/logos/chargebee.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 100}};
-companyInfo["Constructor.io"] = {"image": "images/logos/constructorio.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
-companyInfo["Coveo"] = {"image": "images/logos/coveo.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
-companyInfo["LucidWorks"] = {"image": "images/logos/lucidworks.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
-companyInfo["Attraqt"] = {"image": "images/logos/attraqt.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 0}};
-companyInfo["Bazaarvoice"] = {"image": "images/logos/bazaarvoice.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
-companyInfo["Trustpilot"] = {"image": "images/logos/trustpilot.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
-companyInfo["7Learnings"] = {"image": "images/logos/7learnings.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
-companyInfo["Talon.One"] = {"image": "images/logos/talonone.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 0}};
-companyInfo["XCCommerce"] = {"image": "images/logos/xccommerce.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
-companyInfo["Voucherify"] = {"image": "images/logos/voucherify.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
-companyInfo["Tribe"] = {"image": "images/logos/tribe.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
-companyInfo["Voyado"] = {"image": "images/logos/voyado.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 0}};
-companyInfo["Antavo"] = {"image": "images/logos/antavo.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
-companyInfo["trbo"] = {"image": "images/logos/trbo.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
-companyInfo["Dynamic Yield"] = {"image": "images/logos/dynamicyield.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 200}};
-companyInfo["Rich Relevance"] = {"image": "images/logos/richrelevance.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
-companyInfo["Apptus"] = {"image": "images/logos/apptus.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 0}};
-companyInfo["Emarsys"] = {"image": "images/logos/emarsys.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
-companyInfo["Fluent"] = {"image": "images/logos/fluent.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 100}};
-companyInfo["fulfillmenttools"] = {"image": "images/logos/fulfillmenttools.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 200}};
-companyInfo["Manhattan Associates"] = {"image": "images/logos/manhattanassociates.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 100}};
-companyInfo["Sterling"] = {"image": "images/logos/sterling.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 0}};
-companyInfo["Riversand"] = {"image": "images/logos/riversand.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 200}};
-companyInfo["inRiver"] = {"image": "images/logos/inriver.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
-companyInfo["Pimcore"] = {"image": "images/logos/pimcore.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 0}};
-companyInfo["Salsify"] = {"image": "images/logos/salsify.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
-companyInfo["Productsup"] = {"image": "images/logos/productsup.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 200}};
-companyInfo["VTEX"] = {"image": "images/logos/vtex.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
-companyInfo["Mirakl"] = {"image": "images/logos/mirakl.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 0}};
-companyInfo["SendGrid"] = {"image": "images/logos/sendgrid.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
-companyInfo["Twilio"] = {"image": "images/logos/twilio.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 200}};
-companyInfo["Postmark"] = {"image": "images/logos/postmark.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
-companyInfo["Mailchimp"] = {"image": "images/logos/mailchimp.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 0}};
-companyInfo["Apollo"] = {"image": "images/logos/apollo.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 200}};
-companyInfo["Auth0"] = {"image": "images/logos/auth0.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
-companyInfo["Azure Active Directory"] = {"image": "images/logos/azureactivedirectory.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
-companyInfo["Vamp.io"] = {"image": "images/logos/vamp.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 0}};
-companyInfo["Ashiba"] = {"image": "images/logos/ashiba.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
-companyInfo["Pipe17"] = {"image": "images/logos/pipe17.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
-companyInfo["Workato"] = {"image": "images/logos/workato.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
+// detailed information for each vendor
+var vendorInfo = {};
+vendorInfo["Bloomreach Experience Platform (Hippo)"] = {"image": "images/logos/bloomreach.png", "description": "Bloomreach solutions combine the power of unified customer and product data with the speed and scale of AI and predictive decisioning, so you can deliver magical experiences that convert on any channel and every journey.", "contact": "1-111-111-1111", "attributes": {"Regions Served": ["USA", "Germany"], "Funding to Date ($ in millions)": 247, "Employee Count": 500, "Year Founded": 2009, "MACH Certified": true, "GraphQL Support": false, "Gartner/Forrester Industry Leader": true}, "socials": {"url": "https://www.bloomreach.com", "linkedin": "https://www.linkedin.com/company/bloomreach/", "crunchbase": "https://www.crunchbase.com/organization/bloomreach", "g2": "https://www.g2.com/products/bloomreach-bloomreach/reviews"}};
+vendorInfo["Adobe Experience Manager"] = {"image": "images/logos/adobeexperiencemanager.png", "description": "Adobe Experience Manager (AEM) is a comprehensive content management solution for building websites, mobile apps and forms. And it makes it easy to manage your marketing content and assets.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 1500, "Employee Count": 200, "MACH Certified": true, "Industry Leader per Gartner/Forrester": false}};
+vendorInfo["Acquia (Drupal)"] = {"image": "images/logos/acquiadrupal.jpg", "description": "Acquia provides an unrivaled Enterprise Digital Experience Platform designed to help you build Drupal experiences that engage customers, enhance conversions and help your business stand out.", "contact": "123-567-9872", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
+vendorInfo["Styla"] = {"image": "images/logos/styla.png", "description": "Styla is a platform that allows brands and retailers to: <ul><li>Regain control of your content and build personalised, branded experiences in minutes.</li> <li>Eliminate the risks, complexity, and lengthy timelines of building a frontend from scratch.</li><li>Explore limitless possibilities that boost premium digital experiences: agile, scalable and impactful.</li></ul>", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["Akamai"] = {"image": "images/logos/akamai.png", "description": "Akamai focuses on four areas: <ul><li>Protecting apps and APIs from credentials abuse</li><li>Enhancing customer web and mobile customer experience using data and automation.</li><li>Deliver high-quality media</li><li>Quickly integrate Akamai into existing developer workflows.</li></ul>", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["AWS Cloudfront"] = {"image": "images/logos/awscloudfront.jpg", "description": "Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency, high transfer speeds, all within a developer-friendly environment.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Google Cloud CDN"] = {"image": "images/logos/googlecloud.png", "description": "Fast, reliable web and video content delivery with global scale and reach.<ul><li>Brings consistently great web and video experiences to users anywhere</li><li>Provides privacy and data security</li><li>Activates with a single click for Cloud Load Balancing users</li></ul>", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Fastly"] = {"image": "images/logos/fastly.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Azure CDN"] = {"image": "images/logos/azure.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["Cloudflare"] = {"image": "images/logos/cloudflare.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["Moovweb"] = {"image": "images/logos/moovweb.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Yottaa"] = {"image": "images/logos/yottaa.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Netlify"] = {"image": "images/logos/netlify.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Frontastic"] = {"image": "images/logos/frontastic.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["Vue Storefront"] = {"image": "images/logos/vuestorefront.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
+vendorInfo["commerce-ui"] = {"image": "images/logos/commerce-ui.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Shogun"] = {"image": "images/logos/shogun.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
+vendorInfo["Bloomreach"] = {"image": "images/logos/bloomreach.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Tulip"] = {"image": "images/logos/tulip.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
+vendorInfo["NewStore"] = {"image": "images/logos/newstore.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["Contentstack"] = {"image": "images/logos/contentstack.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
+vendorInfo["Contentful"] = {"image": "images/logos/contentful.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Amplience"] = {"image": "images/logos/amplience.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 1000, "Employee Count": 0}};
+vendorInfo["GraphCMS"] = {"image": "images/logos/graphcms.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["CoreMedia"] = {"image": "images/logos/coremedia.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
+vendorInfo["Bynder"] = {"image": "images/logos/bynder.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["Threekit"] = {"image": "images/logos/threekit.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
+vendorInfo["Cloudinary"] = {"image": "images/logos/cloudinary.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["Scene7"] = {"image": "images/logos/scene7.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
+vendorInfo["Brightcove"] = {"image": "images/logos/brightcove.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["commercetools"] = {"image": "images/logos/commercetools.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
+vendorInfo["Storm Commerce"] = {"image": "images/logos/stormcommerce.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["Commerce Layer"] = {"image": "images/logos/commercelayer.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
+vendorInfo["Four51"] = {"image": "images/logos/four51.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["emporix"] = {"image": "images/logos/emporix.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
+vendorInfo["Episerver"] = {"image": "images/logos/episerver.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Fast"] = {"image": "images/logos/fast.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 0}};
+vendorInfo["Bolt"] = {"image": "images/logos/bolt.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1500, "Employee Count": 200}};
+vendorInfo["Cybersource"] = {"image": "images/logos/cybersource.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
+vendorInfo["Stripe"] = {"image": "images/logos/stripe.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 200}};
+vendorInfo["Braintree"] = {"image": "images/logos/braintree.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 1000, "Employee Count": 0}};
+vendorInfo["Adyen"] = {"image": "images/logos/adyen.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
+vendorInfo["NS8"] = {"image": "images/logos/ns8.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 0}};
+vendorInfo["Avalara"] = {"image": "images/logos/avalara.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
+vendorInfo["Vertex"] = {"image": "images/logos/vertex.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 0}};
+vendorInfo["Chargebee"] = {"image": "images/logos/chargebee.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 100}};
+vendorInfo["Constructor.io"] = {"image": "images/logos/constructorio.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
+vendorInfo["Coveo"] = {"image": "images/logos/coveo.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
+vendorInfo["LucidWorks"] = {"image": "images/logos/lucidworks.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
+vendorInfo["Attraqt"] = {"image": "images/logos/attraqt.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 0}};
+vendorInfo["Bazaarvoice"] = {"image": "images/logos/bazaarvoice.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
+vendorInfo["Trustpilot"] = {"image": "images/logos/trustpilot.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
+vendorInfo["7Learnings"] = {"image": "images/logos/7learnings.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
+vendorInfo["Talon.One"] = {"image": "images/logos/talonone.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 0}};
+vendorInfo["XCCommerce"] = {"image": "images/logos/xccommerce.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
+vendorInfo["Voucherify"] = {"image": "images/logos/voucherify.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 200}};
+vendorInfo["Tribe"] = {"image": "images/logos/tribe.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
+vendorInfo["Voyado"] = {"image": "images/logos/voyado.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2200, "Employee Count": 0}};
+vendorInfo["Antavo"] = {"image": "images/logos/antavo.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA", "Europe"], "Funding to Date ($)": 2000, "Employee Count": 100}};
+vendorInfo["trbo"] = {"image": "images/logos/trbo.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
+vendorInfo["Dynamic Yield"] = {"image": "images/logos/dynamicyield.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 200}};
+vendorInfo["Rich Relevance"] = {"image": "images/logos/richrelevance.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
+vendorInfo["Apptus"] = {"image": "images/logos/apptus.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 0}};
+vendorInfo["Emarsys"] = {"image": "images/logos/emarsys.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
+vendorInfo["Fluent"] = {"image": "images/logos/fluent.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 100}};
+vendorInfo["fulfillmenttools"] = {"image": "images/logos/fulfillmenttools.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 200}};
+vendorInfo["Manhattan Associates"] = {"image": "images/logos/manhattanassociates.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 100}};
+vendorInfo["Sterling"] = {"image": "images/logos/sterling.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 0}};
+vendorInfo["Riversand"] = {"image": "images/logos/riversand.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 200}};
+vendorInfo["inRiver"] = {"image": "images/logos/inriver.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
+vendorInfo["Pimcore"] = {"image": "images/logos/pimcore.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 0}};
+vendorInfo["Salsify"] = {"image": "images/logos/salsify.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
+vendorInfo["Productsup"] = {"image": "images/logos/productsup.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2000, "Employee Count": 200}};
+vendorInfo["VTEX"] = {"image": "images/logos/vtex.jpg", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 2200, "Employee Count": 100}};
+vendorInfo["Mirakl"] = {"image": "images/logos/mirakl.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 0}};
+vendorInfo["SendGrid"] = {"image": "images/logos/sendgrid.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
+vendorInfo["Twilio"] = {"image": "images/logos/twilio.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 200}};
+vendorInfo["Postmark"] = {"image": "images/logos/postmark.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
+vendorInfo["Mailchimp"] = {"image": "images/logos/mailchimp.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 0}};
+vendorInfo["Apollo"] = {"image": "images/logos/apollo.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 200}};
+vendorInfo["Auth0"] = {"image": "images/logos/auth0.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
+vendorInfo["Azure Active Directory"] = {"image": "images/logos/azureactivedirectory.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
+vendorInfo["Vamp.io"] = {"image": "images/logos/vamp.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 0}};
+vendorInfo["Ashiba"] = {"image": "images/logos/ashiba.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
+vendorInfo["Pipe17"] = {"image": "images/logos/pipe17.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
+vendorInfo["Workato"] = {"image": "images/logos/workato.png", "description": "Placeholder for company description - fill in later.", "contact": "111-222-3333", "attributes": {"Regions Served": ["USA"], "Funding to Date ($)": 3000, "Employee Count": 100}};
+
+// Attributes that appear in filter panel
+var filterTypes = ["Regions Served", "MACH Certified", "Gartner/Forrester Industry Leader"];
+
+// image paths for social icons
+var socialIcons = {"url": "images/icons/internet.png", "crunchbase": "images/icons/crunchbase.png", "linkedin": "images/icons/linkedin.png", "g2": "images/icons/g2.png"};
 
 // attribute:type dictionary (e.g., "Regions Served": "array")
 var attributeTypes = {};
-for(let company in companyInfo) {
-  for(let attribute in companyInfo[company]["attributes"]) {
+for(let company in vendorInfo) {
+  for(let attribute in vendorInfo[company]["attributes"]) {
     if(!(attribute in attributeTypes)) {
       console.log(attribute);
-      if(Array.isArray(companyInfo[company]["attributes"][attribute])) {
+      if(Array.isArray(vendorInfo[company]["attributes"][attribute])) {
         attributeTypes[attribute] = "array";
       } else {
         attributeTypes[attribute] = "string";
@@ -247,16 +253,16 @@ categoryColors["Frontend"] = "background-blue-1";
 categoryColors["Backend"] = "background-blue-2";
 categoryColors["Developer Tooling"] = "background-blue-3";
 
-var companyCategories = findCategoryChildren();
+var rootCategories = findCategoryChildren();
 // returns dictionary of rootCategory:children (both subcategories and companies) e.g. {}"Frontend": [a, b, c], "Backend": [d, e, f], ...}
 function findCategoryChildren() {
-  let companyCategories = {};
+  let rootCategories = {};
   let roots = ["Frontend", "Backend", "Developer Tooling"];
   for(let i = 0; i < roots.length; i++) {
     let companyArray = [];
-    companyCategories[roots[i]] = findChildren(roots[i], companyArray);
+    rootCategories[roots[i]] = findChildren(roots[i], companyArray);
   }
-  return companyCategories;
+  return rootCategories;
 }
 
 function findChildren(category, ary) {
@@ -266,10 +272,10 @@ function findChildren(category, ary) {
       findChildren(categoryTree[category][i], ary);
     }
   }
-  if(category in categoryCompanies) {
-    for(let i = 0; i < categoryCompanies[category].length; i++) {
-      if(!ary.includes(categoryCompanies[category][i])) {
-        ary.push(categoryCompanies[category][i]);
+  if(category in categoryVendors) {
+    for(let i = 0; i < categoryVendors[category].length; i++) {
+      if(!ary.includes(categoryVendors[category][i])) {
+        ary.push(categoryVendors[category][i]);
       }
     }
   }

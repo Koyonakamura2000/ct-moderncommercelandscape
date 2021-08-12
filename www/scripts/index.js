@@ -71,8 +71,8 @@
   function findRootCategory(category) {
     let answer = "root not found";
     if(category != undefined) {
-      for(let root in companyCategories) {
-        if(companyCategories[root].includes(category)) {
+      for(let root in rootCategories) {
+        if(rootCategories[root].includes(category)) {
           answer = root;
         }
       }
@@ -80,7 +80,7 @@
     return answer;
   }
 
-  // filling options from categoryCompanies
+  // filling options from categoryVendors
   function initOptionBoxNoPrompt() {
     let optionBox = id("option-box");
     while(optionBox.firstChild) {
@@ -88,7 +88,7 @@
     }
     // make 3 sections for frontend, backend, developer tooling
     optionBox.classList.add("flex-vertical");
-    for(let category in companyCategories) {
+    for(let category in rootCategories) {
       let newLabelContainer = document.createElement("div");
       newLabelContainer.classList.add("category-container");
       let categoryLabel = document.createElement("div");
@@ -107,7 +107,7 @@
       let containerHeading = document.createElement("h3");
       containerHeading.innerText = "Explore options for: " + category;
       topContainer.appendChild(containerHeading);
-      let categories = companyCategories[category]; // have to filter out companies
+      let categories = rootCategories[category]; // have to filter out companies
       let sortedCategories = sortArray(categories);
       for(let i = 0; i < sortedCategories.length; i++) {
         let category = sortedCategories[i];
@@ -159,7 +159,7 @@
   function sortArray(ary) {
     let sorted = [];
     for(let i = 0; i < ary.length; i++) {
-      if(ary[i] in categoryCompanies) { // if there's at least one company listed for the category; also checks that the key isn't a company name
+      if(ary[i] in categoryVendors) { // if there's at least one company listed for the category; also checks that the key isn't a company name
         sorted.push(ary[i]);
       }
     }
@@ -174,7 +174,7 @@
       let categories = promptDict[this.innerText.trim()];
       let newHTML = "<h3>" + this.innerText.trim() + "</h3>" + "<div class=\"category-list\">";
       for(let i = 0; i < categories.length; i++) {
-        if(categories[i] in categoryCompanies) {
+        if(categories[i] in categoryVendors) {
           let description = "description placeholder";
           if(categories[i] in categoryDescription) {
             description = categoryDescription[categories[i]];
@@ -287,14 +287,14 @@
     while(companyBox.firstChild) {
       companyBox.removeChild(companyBox.firstChild);
     }
-    if(category in categoryCompanies) {
-      for(let i = 0; i < categoryCompanies[category].length; i++) {
-        let companyName = categoryCompanies[category][i];
+    if(category in categoryVendors) {
+      for(let i = 0; i < categoryVendors[category].length; i++) {
+        let companyName = categoryVendors[category][i];
         if(passesFilters(companyName, filters)) {
           let newCompany = document.createElement("div");
           newCompany.classList.add("company");
-          let companyName = categoryCompanies[category][i];
-          newCompany.innerHTML = "<div class=\"logo-container\"><h2 class=\"hidden\">" + companyName + "</h2><img class=\"logo\" src=\"" + companyInfo[companyName]["image"] + "\" alt=\"" + companyName + "\"/></div>";
+          let companyName = categoryVendors[category][i];
+          newCompany.innerHTML = "<div class=\"logo-container\"><h2 class=\"hidden\">" + companyName + "</h2><img class=\"logo\" src=\"" + vendorInfo[companyName]["image"] + "\" alt=\"" + companyName + "\"/></div>";
           newCompany.addEventListener("click", expandDetails.bind(newCompany));
           companyBox.appendChild(newCompany);
         }
@@ -309,7 +309,7 @@
   // company = company name, filters = dictionary of attributes that need to be met
   function passesFilters(company, filters) {
     let isValid = true;
-    let companyAttributes = companyInfo[company]["attributes"];
+    let companyAttributes = vendorInfo[company]["attributes"];
     for(let filter in filters) {
       // filter is an array of attributes
       let values = filters[filter];
@@ -322,7 +322,7 @@
               isValid = false;
             }
           }
-        } else if(!values.includes(companyAttributes[filter].toString())) {
+        } else if(!values.includes(companyAttributes[filter]) && !values.includes(companyAttributes[filter].toString())) {
           isValid = false;
         }
       }
@@ -340,28 +340,64 @@
     let heading = document.createElement("h1");
     heading.innerText = "Filters (Click to Select):";
     container.appendChild(heading);
+    let subheading = document.createElement("h3");
+    subheading.classList.add("filter-description");
+    subheading.innerHTML = "MACH Certified: member of <a class=\"text-link\" href=\"https://machalliance.org/\"  target=\"_blank\"\">MACH Alliance</a>";
+    container.appendChild(subheading);
+    let binaryContainer = document.createElement("div");
     for(let attribute in filtersDict) {
-      let filterContainer = document.createElement("div");
-      filterContainer.classList.add("filters-row");
-      let description = document.createElement("h3");
-      description.innerText = attribute;
-      filterContainer.appendChild(description);
-      let options = document.createElement("div");
-      options.classList.add("filters-box");
-      for(let i = 0; i < filtersDict[attribute].length; i++) {
-        let option = document.createElement("div");
-        option.classList.add("filter");
-        option.innerText = filtersDict[attribute][i];
-        option.addEventListener("click", applyFilter.bind(option));
-        options.appendChild(option);
+      if(filterTypes.includes(attribute)) {
+        let filterContainer = document.createElement("div");
+        filterContainer.classList.add("filters-row");
+        let description = document.createElement("h3");
+        description.innerText = attribute;
+        filterContainer.appendChild(description);
+        if(attributeIsBinary(filtersDict[attribute])) {
+          let checkBox = document.createElement("div");
+          checkBox.classList.add("filter");
+          checkBox.classList.add("background-checkmark");
+          checkBox.addEventListener("click", applyCheck.bind(checkBox));
+          filterContainer.appendChild(checkBox)
+          binaryContainer.appendChild(filterContainer);
+        } else {
+          let options = document.createElement("div");
+          options.classList.add("filters-box");
+          for(let i = 0; i < filtersDict[attribute].length; i++) {
+            let option = document.createElement("div");
+            option.classList.add("filter");
+            option.innerText = filtersDict[attribute][i];
+            option.addEventListener("click", applyFilter.bind(option));
+            options.appendChild(option);
+          }
+          filterContainer.appendChild(options);
+          container.appendChild(filterContainer);
+        }
       }
-      filterContainer.appendChild(options);
-      container.appendChild(filterContainer);
     }
+    container.appendChild(binaryContainer);
+  }
+
+  function attributeIsBinary(ary) {
+    let isBinary = true;
+    for(let i = 0; i < ary.length; i++) {
+      if(!(ary[i] == true || ary[i] == false)) {
+        isBinary = false;
+      }
+    }
+    return isBinary;
+  }
+
+  // applies filter for checkbox
+  function applyCheck() {
+    console.log(this);
+    console.log(this.parentNode.querySelector("h3"));
+    toggleFilter(this);
+    filterCompanies();
   }
 
   // clicking on filter will 1. toggle its state on/off, 2. update list of companies accordingly
   function applyFilter() {
+    console.log(this);
     let value = this.innerText;
     let attribute = this.parentNode.parentNode.querySelector("h3").innerText;
     if(valuesAreArray(attribute)) {
@@ -381,9 +417,17 @@
     if(filter.classList.contains("filter")) {
       filter.classList.remove("filter");
       filter.classList.add("filter-selected");
+      if(filter.classList.contains("background-checkmark")) {
+        filter.classList.remove("background-checkmark");
+        filter.classList.add("background-checkmark-selected");
+      }
     } else {
       filter.classList.remove("filter-selected");
       filter.classList.add("filter");
+      if(filter.classList.contains("background-checkmark-selected")) {
+        filter.classList.remove("background-checkmark-selected");
+        filter.classList.add("background-checkmark");
+      }
     }
   }
 
@@ -401,13 +445,21 @@
           }
         }
       } else {
-        let filterAry = [];
-        for(let j = 0; j < selectedFilters.length; j++) {
-          filterAry.push(selectedFilters[j].innerText);
+        if(selectedFilters.length > 0) {
+          if(selectedFilters[0].innerText == "") {
+            let filterAry = [true];
+            selectedFiltersDict[attribute] = filterAry;
+          } else {
+            let filterAry = [];
+            for(let j = 0; j < selectedFilters.length; j++) {
+              filterAry.push(selectedFilters[j].innerText);
+            }
+            selectedFiltersDict[attribute] = filterAry;
+          }
         }
-        selectedFiltersDict[attribute] = filterAry;
       }
     }
+    console.log(selectedFiltersDict);
     // filter companies
     hideCompanies(selectedFiltersDict);
   }
@@ -423,7 +475,7 @@
     }
   }
 
-  // returns true if the values for an attribute are arrays (e.g., Regions Served) by checking the first company in companyInfo
+  // returns true if the values for an attribute are arrays (e.g., Regions Served) by checking the first company in vendorInfo
   function valuesAreArray(attribute) {
     let isArray = false;
     if(attributeTypes[attribute] == "array") {
@@ -435,10 +487,10 @@
   // returns list of attributes that each company in category has
   function findAttributes(category) {
     let allAttributes = {};
-    for(let i = 0; i < categoryCompanies[category].length; i++) {
-      let companyName = categoryCompanies[category][i];
-      if(companyName in companyInfo) {
-        let companyAttributes = companyInfo[companyName]["attributes"];
+    for(let i = 0; i < categoryVendors[category].length; i++) {
+      let companyName = categoryVendors[category][i];
+      if(companyName in vendorInfo) {
+        let companyAttributes = vendorInfo[companyName]["attributes"];
         for(let attribute in companyAttributes) {
           if(attribute in allAttributes) {
             if(Array.isArray(companyAttributes[attribute])) { // e.g. regions served
@@ -492,21 +544,42 @@
       nameContainer.innerText = companyName;
       let closeIcon = document.createElement("img");
       closeIcon.src = "images/icons/x.png";
-      closeIcon.classList.add("popup-icon");
+      closeIcon.classList.add("popup-x");
       closeIcon.addEventListener("click", function(e) {closePopup(e, company)});
       let description = document.createElement("p");
-      description.innerHTML = companyInfo[companyName]["description"];
+      description.innerHTML = vendorInfo[companyName]["description"];
+      popup.appendChild(nameContainer);
+      popup.appendChild(description);
+      if(vendorInfo[companyName]["socials"] != undefined) {
+        let socialsContainer = document.createElement("div");
+        socialsContainer.classList.add("socials-container");
+        for(let social in vendorInfo[companyName]["socials"]) {
+          if(social in socialIcons) {
+            let newContainer = document.createElement("div");
+            let icon = document.createElement("img");
+            icon.classList.add("popup-icon");
+            icon.src = socialIcons[social];
+            newContainer.appendChild(icon);
+            newContainer.addEventListener("click", redirect.bind(vendorInfo[companyName]["socials"][social]));
+            socialsContainer.appendChild(newContainer);
+          }
+        }
+        popup.appendChild(socialsContainer);
+      }
       let addBtn = document.createElement("button");
       addBtn.id = "company-add-btn";
       addBtn.innerText = "Add to List";
       addBtn.addEventListener("click", addToCompanyList.bind(companyName));
-      popup.appendChild(nameContainer);
-      popup.appendChild(description);
       popup.appendChild(closeIcon);
       popup.appendChild(addBtn);
       this.appendChild(popup);
       this.removeEventListener("click", expandDetails);
     }
+  }
+
+  //  this = URL to redirect to
+  function redirect() {
+    window.open(this, "_blank");
   }
 
   function stopBubbling(evt) {
@@ -569,7 +642,7 @@
     imgContainer.classList.add("logo-container");
     let img = document.createElement("img");
     img.classList.add("logo");
-    img.src = companyInfo[name]["image"];
+    img.src = vendorInfo[name]["image"];
     imgContainer.appendChild(img);
     newCompany.appendChild(imgContainer);
     let icon = document.createElement("img");
@@ -611,8 +684,8 @@
 
   function findRoot(company) {
     let root = "root not found";
-    for(let category in companyCategories) {
-      if(companyCategories[category].includes(company)) {
+    for(let category in rootCategories) {
+      if(rootCategories[category].includes(company)) {
         root = category;
       }
     }

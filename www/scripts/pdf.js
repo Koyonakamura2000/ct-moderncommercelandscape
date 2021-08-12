@@ -21,7 +21,7 @@
       let logoContainer = document.createElement("div");
       logoContainer.classList.add("logo");
       let logoImg = document.createElement("img");
-      logoImg.src = companyInfo[companies[i]]["image"];
+      logoImg.src = vendorInfo[companies[i]]["image"];
       logoImg.alt = companies[i];
       logoContainer.appendChild(logoImg);
       companyContainer.appendChild(logoContainer);
@@ -31,17 +31,17 @@
       infoH2.innerText = companies[i];
       infoContainer.appendChild(infoH2);
       let description = document.createElement("p");
-      description.innerText = companyInfo[companies[i]]["description"];
+      description.innerHTML = vendorInfo[companies[i]]["description"];
       infoContainer.appendChild(description);
       let iconRow = document.createElement("div");
       iconRow.classList.add("icons-row");
       let categoryName = "";
-      for(let category in categoryCompanies) {
-        if(categoryCompanies[category].includes(companies[i])) {
+      for(let category in categoryVendors) {
+        if(categoryVendors[category].includes(companies[i])) {
           categoryName = category;
         }
       }
-      let contact = companyInfo[companies[i]]["contact"];
+      let contact = vendorInfo[companies[i]]["contact"];
       iconRow.appendChild(makeIcon("category", categoryName));
       iconRow.appendChild(makeIcon("contact", contact));
       infoContainer.appendChild(iconRow);
