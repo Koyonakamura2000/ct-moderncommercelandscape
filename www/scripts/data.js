@@ -2,13 +2,13 @@
 
 // key: beginner-friendly prompt; value: array of relevant categories
 var promptDict = {};
-promptDict["Include interactive features to improve the store browsing experience"] = ["Content Management", "Images", "Video"];
+promptDict["Include interactive features to improve the store browsing experience"] = ["Content Management", "Images", "Video", "Search"];
 promptDict["Create an e-commerce website for my products"] = ["Frontend-as-a-Service", "Frontend", "SEO", "Commerce"];
 promptDict["Manage product orders and statuses"] = ["Returns", "OMS", "Shipping"];
 promptDict["Increase customer retention on my website"] = ["Promotions", "Personalization", "Loyalty"];
-promptDict["Reduce the number of abandoned carts"] = ["Personalization"];
+promptDict["Reduce the number of abandoned carts"] = ["Personalization", "Single Page Checkout", "Promotions"];
 promptDict["Improve website performance"] = ["Load Optimization", "CDN", "JAMStack Hosting"];
-promptDict["Build a marketing-only (non-transactional) website"] = ["Frontend-as-a-Service"];
+promptDict["Build a marketing-only (non-transactional) website"] = ["Frontend-as-a-Service","Frontend"];
 promptDict["Help my customers better discover products"] = ["Search", "Conversational", "Ratings & Reviews"];
 
 // key: category; value: string - beginner-friendly description of category

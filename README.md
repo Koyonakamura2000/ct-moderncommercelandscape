@@ -52,6 +52,12 @@ Example Format: `filterTypes = ["Regions Served", "MACH Certified", "Gartner/For
 `index.js` Script for the website\
 `pdf.js` Script for the PDF output page
 
+## Deploying to Production
+1. Navigate to the directory with the folder "www" and app.yaml
+3. Open terminal from this location (e.g., on Windows, right click in folder and click on "Git Bash Here").
+2. If this is your first time, run `gcloud init` and select the right project (ct-product-landscape). If you do not see the project, please ask the SRE team for help.
+3. Run `gcloud app deploy` to push changes to www.moderncommercelandscape.com. It might take a few minutes to update.
+
 ## Next steps
 - Display list of partners that vendors work with to aid selection
 - Simplify data entry/revision with a backend API

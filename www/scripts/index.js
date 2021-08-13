@@ -179,7 +179,6 @@
           if(categories[i] in categoryDescription) {
             description = categoryDescription[categories[i]];
           }
-          // console.log(description);
           newHTML += "<div class=\"category\"><h4>" + categories[i] + "</h4><p>" + description + "</p><img class=\"inblock-icon-2\" src=\"images/icons/plus-blue.png\"/></div>";
         }
       }
@@ -393,15 +392,12 @@
 
   // applies filter for checkbox
   function applyCheck() {
-    // console.log(this);
-    // console.log(this.parentNode.querySelector("h3"));
     toggleFilter(this);
     filterCompanies();
   }
 
   // clicking on filter will 1. toggle its state on/off, 2. update list of companies accordingly
   function applyFilter() {
-    // console.log(this);
     let value = this.innerText;
     let attribute = this.parentNode.parentNode.querySelector("h3").innerText;
     if(valuesAreArray(attribute)) {
@@ -463,7 +459,6 @@
         }
       }
     }
-    // console.log(selectedFiltersDict);
     // filter companies
     hideCompanies(selectedFiltersDict);
   }
@@ -496,7 +491,6 @@
       if(companyName in vendorInfo) {
         let companyAttributes = vendorInfo[companyName]["attributes"];
         for(let attribute in companyAttributes) {
-          console.log(attribute);
           if(attribute in allAttributes) {
             if(Array.isArray(companyAttributes[attribute])) { // e.g. regions served
               for(let j = 0; j < companyAttributes[attribute].length; j++) {
@@ -533,7 +527,6 @@
         });
       }
     }
-    console.log(allAttributes);
     return allAttributes;
   }
 
