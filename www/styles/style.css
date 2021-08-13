@@ -306,30 +306,47 @@ main {
   align-items: baseline;
 }
 
-#email-button {
-  color: #0CC8F1;
+#explore-btn, #pdf-button {
+  background-color: #0CC8F1;
+  color: white;
+  text-decoration: none;
+  border: none;
+  padding: .4rem .8rem .4rem .8rem;
+  font-weight: bold;
+  font-size: .8rem;
+  align-self: flex-end;
+  position: absolute;
+  bottom: .5rem;
+  border-radius: .2rem;
 }
 
-#explore-btn, #pdf-button {
+#hubspot-button {
   display: flex;
-  align-self: flex-end;
-  bottom: 1rem;
+  bottom: .5rem;
   position: absolute;
   text-decoration: none;
   border: none;
-  color: #0CC8F1;
+  color: white;
   font-weight: bold;
-  font-size: 1rem;
-  background-color: white;
+  font-size: .8rem;
+  padding: .4rem .8rem .4rem .8rem;
+  background-color: #FF7A59;
+  border-radius: .2rem;
 }
 
 #explore-btn:hover, #pdf-button:hover {
   cursor: pointer;
-  text-decoration: underline;
+  background-color: #0996B5;
+}
+
+#hubspot-button:hover {
+  cursor: pointer;
+  background-color: #BF5C43;
 }
 
 .btn-deselected {
-  color: #C4C4C4 !important;
+  color: white;
+  background-color: #C4C4C4 !important;
 }
 
 #legos {
@@ -532,11 +549,12 @@ main {
   align-self: flex-end;
   position: absolute;
   bottom: .5rem;
-  border-radius: .3rem;
+  border-radius: .2rem;
 }
 
 #company-add-btn:hover {
   cursor: pointer;
+  background-color: #0996B5;
 }
 
 .one-column {
@@ -707,8 +725,10 @@ main {
   display: flex;
   position: absolute;
   bottom: .5rem;
-  width: 8rem;
-  justify-content: space-between;
+}
+
+.socials-container div {
+  margin-right: .5rem;
 }
 
 .popup-icon {

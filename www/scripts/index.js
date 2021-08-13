@@ -12,6 +12,7 @@
     id("prompt-select-btn").addEventListener("click", revertCategoryView);
     id("website-logo").addEventListener("click", resetView);
     id("pdf-button").addEventListener("click", makePdf);
+    id("hubspot-button").addEventListener("click", openForm)
   }
 
   function resetView() {
@@ -33,7 +34,6 @@
     } else {
       id("prompt-view-link").classList.remove("hidden");
     }
-    id("company-details").classList.add("hidden");
     id("website-description").classList.remove("hidden");
   }
 
@@ -233,7 +233,11 @@
   }
 
   function removeCompany() {
-    this.remove();
+    if(this.parentNode.getElementsByClassName("company-blue").length == 1) {
+      this.parentNode.parentNode.remove();
+    } else {
+      this.remove();
+    }
     if(id("selected-companies").getElementsByClassName("company-blue").length == 0) {
       id("pdf-button").classList.add("btn-deselected");
       id("section-right-description-2").classList.remove("hidden");
@@ -389,15 +393,15 @@
 
   // applies filter for checkbox
   function applyCheck() {
-    console.log(this);
-    console.log(this.parentNode.querySelector("h3"));
+    // console.log(this);
+    // console.log(this.parentNode.querySelector("h3"));
     toggleFilter(this);
     filterCompanies();
   }
 
   // clicking on filter will 1. toggle its state on/off, 2. update list of companies accordingly
   function applyFilter() {
-    console.log(this);
+    // console.log(this);
     let value = this.innerText;
     let attribute = this.parentNode.parentNode.querySelector("h3").innerText;
     if(valuesAreArray(attribute)) {
@@ -459,7 +463,7 @@
         }
       }
     }
-    console.log(selectedFiltersDict);
+    // console.log(selectedFiltersDict);
     // filter companies
     hideCompanies(selectedFiltersDict);
   }
@@ -492,6 +496,7 @@
       if(companyName in vendorInfo) {
         let companyAttributes = vendorInfo[companyName]["attributes"];
         for(let attribute in companyAttributes) {
+          console.log(attribute);
           if(attribute in allAttributes) {
             if(Array.isArray(companyAttributes[attribute])) { // e.g. regions served
               for(let j = 0; j < companyAttributes[attribute].length; j++) {
@@ -521,6 +526,14 @@
         }
       }
     }
+    for(let attribute in allAttributes) {
+      if(typeof(allAttributes[attribute][0]) == "number") {
+        allAttributes[attribute] = allAttributes[attribute].sort(function(a, b) {
+          return a - b;
+        });
+      }
+    }
+    console.log(allAttributes);
     return allAttributes;
   }
 
@@ -732,6 +745,10 @@
       redirectUrl += encodeURIComponent(encodedCompanies);
       window.open(redirectUrl, "_blank");
     }
+  }
+
+  function openForm() {
+    window.open("./hubspot.html", "_blank");
   }
 
   function id(idName) {
