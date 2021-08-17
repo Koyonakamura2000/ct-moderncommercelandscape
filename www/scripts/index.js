@@ -312,23 +312,28 @@
   // company = company name, filters = dictionary of attributes that need to be met
   function passesFilters(company, filters) {
     let isValid = true;
-    let companyAttributes = vendorInfo[company]["attributes"];
-    for(let filter in filters) {
-      // filter is an array of attributes
-      let values = filters[filter];
-      for(let i = 0; i < values.length; i++) {
-        if(!(filter in companyAttributes)) {
-          isValid = false;
-        } else if(Array.isArray(companyAttributes[filter])) {
-          for(let j = 0; j < values.length; j++) {
-            if(!companyAttributes[filter].includes(values[j])) {
-              isValid = false;
+    if(vendorInfo[company] != undefined) {
+      let companyAttributes = vendorInfo[company]["attributes"];
+      for(let filter in filters) {
+        // filter is an array of attributes
+        let values = filters[filter];
+        for(let i = 0; i < values.length; i++) {
+          if(!(filter in companyAttributes)) {
+            isValid = false;
+          } else if(Array.isArray(companyAttributes[filter])) {
+            for(let j = 0; j < values.length; j++) {
+              if(!companyAttributes[filter].includes(values[j])) {
+                isValid = false;
+              }
             }
+          } else if(!values.includes(companyAttributes[filter]) && !values.includes(companyAttributes[filter].toString())) {
+            isValid = false;
           }
-        } else if(!values.includes(companyAttributes[filter]) && !values.includes(companyAttributes[filter].toString())) {
-          isValid = false;
         }
       }
+    } else {
+      console.log("Check whether vendorInfo key and  " + company);
+      isValid = false;
     }
     return isValid;
   }
